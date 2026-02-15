@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:08 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 13:06:17 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/15 13:39:46 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_parsefile(t_list **list, int fd)
 	t_list	*newelement;
 
 	line = get_next_line(fd);
+
 	*list = ft_lstnew(line);
 	if (!list)
 		return (ft_closeerror(fd, "Malloc error"));
