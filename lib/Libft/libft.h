@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ineiras- <ineiras-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:43:02 by alpascua          #+#    #+#             */
-/*   Updated: 2025/09/18 16:33:53 by ineiras-         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:16:39 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	*ft_memset(void *s, int c, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 size_t	ft_strlen(const char *s);
+
+size_t	ft_arrlen(const char **s);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
