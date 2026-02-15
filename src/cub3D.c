@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarodrig <sarodrig@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:08 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 15:47:00 by sarodrig         ###   ########.fr       */
+/*   Updated: 2026/02/15 18:13:16 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_checkfilename(char *name)
 	return (0);
 }
 
-int	ft_checkargs(int narg, char **argv)
+int	ft_checkargs(int narg, char **argv, t_data *data)
 {
 	int	fd;
 
@@ -59,12 +59,13 @@ int	ft_checkargs(int narg, char **argv)
 		ft_putstr_fd("\n", 2);
 		return (0);
 	}
-	return (ft_checkmap(fd));
+	return (ft_checkmap(fd, data));
 }
 
 int	main(int narg, char **argv)
 {
-	if (!ft_checkargs(narg, argv))
+	t_data	data;
+	if (!ft_checkargs(narg, argv, &data))
 		return (1);
 	return (0);
 }
