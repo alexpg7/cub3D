@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sarodrig <sarodrig@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:08 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 14:32:50 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:47:00 by sarodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	ft_closeerror(int fd, char *str)
+{
+	ft_putstr_fd(str, 2);
+	close(fd);
+	return (0);
+}
 
 int	ft_checkfilename(char *name)
 {
@@ -24,49 +31,6 @@ int	ft_checkfilename(char *name)
 	ft_putstr_fd(") has wrong extension\n", 2);
 	ft_putstr_fd("You must input a .cub file\n", 2);
 	return (0);
-}
-
-int	ft_closeerror(int fd, char *str)
-{
-	ft_putstr_fd(str, 2);
-	close(fd);
-	return (0);
-}
-
-int	ft_parsefile(t_list **list, int fd)
-{
-	char	*line;
-	t_list	*newelement;
-
-	line = get_next_line(fd);
-
-	*list = ft_lstnew(line);
-	if (!list)
-		return (ft_closeerror(fd, "Malloc error"));
-	while (line)
-	{
-		newelement = ft_lstnew(line);
-		if (!newelement)
-			return (ft_closeerror(fd, "Malloc error"));
-		ft_lstadd_back(list, newelement);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (1);
-}
-
-int	ft_checkmap(int fd)
-{
-	t_list	*file;
-
-	if (!ft_parsefile(&file, fd))
-		return (0);
-	while(file)
-	{
-		ft_printf("%s", file->content);
-		file = file->next;
-	}
-	return (1);
 }
 
 int	ft_checkargs(int narg, char **argv)
