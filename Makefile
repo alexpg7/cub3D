@@ -19,7 +19,11 @@ INCLUDE = $(LIBFT_PATH)/libft.h inc/cub3D.h Makefile
 # Library files
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRC = src/cub3D.c src/parse.c
+SRC = src/cub3D.c \
+	src/parse.c \
+	src/init.c \
+	src/ft_exit.c \
+	src/ft_isclosed.c
 
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)

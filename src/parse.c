@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 18:38:32 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/18 18:56:21 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	ft_parsefile(t_list **list, int fd)
 	{
 		newelement = ft_lstnew(line);
 		if (!newelement)
+		{
+			ft_lstclear(list, &free);
 			return (ft_closeerror(fd, "Malloc error"));
+		}
 		ft_lstadd_back(list, newelement);
 		line = get_next_line(fd);
 	}
@@ -36,17 +39,17 @@ int	ft_parsefile(t_list **list, int fd)
 void	ft_assigntype(int type, char *str, t_textures *tex)
 {
 	if (type == 1)
-		tex->north = str;
+		tex->north = ft_strdup(str);
 	else if (type == 2)
-		tex->south = str;
+		tex->south = ft_strdup(str);
 	else if (type == 3)
-		tex->east = str;
+		tex->east = ft_strdup(str);
 	else if (type == 4)
-		tex->west = str;
+		tex->west = ft_strdup(str);
 	else if (type == 5)
-		tex->floor = str;
+		tex->floor = ft_strdup(str);
 	else if (type == 6)
-		tex->ceiling = str;
+		tex->ceiling = ft_strdup(str);
 }
 
 int	ft_checktexture(t_data *data, char *str, int type)
@@ -137,15 +140,18 @@ int	ft_gettextures(t_list *file, t_data *data)
 int	ft_checkmap(int fd, t_data *data)
 {
 	t_list	*file;
-	t_list  *node;
-	int	 num_rows;
-	int	 num_cols;
+	t_list	*node;
+	int		num_rows;
+	int		num_cols;
 	char	**map_array;
 
 	if (!ft_parsefile(&file, fd))
 		return (0);
 	if (!ft_gettextures(file, data))
+	{
+		ft_lstclear(&file, &free);
 		return (0);
+	}
 	//create matrix funtion
 	node = file;
 	num_cols = 0;

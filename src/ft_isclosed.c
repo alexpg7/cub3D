@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isclosed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:14:03 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 17:36:45 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:04:00 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_checkaround(char **str, int i, int j)
 		return (0);
 	if (str[i][j + 1] == ' ')
 		return (0);
+	return (1);
 }
 
 int	ft_isclosed(char **str)

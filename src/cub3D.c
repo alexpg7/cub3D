@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:08 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 18:13:16 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:03:21 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int	ft_checkargs(int narg, char **argv, t_data *data)
 int	main(int narg, char **argv)
 {
 	t_data	data;
+
+	ft_init(&data);
 	if (!ft_checkargs(narg, argv, &data))
-		return (1);
+		ft_exit(&data, 1);
+	ft_exit(&data, 0);
 	return (0);
 }
