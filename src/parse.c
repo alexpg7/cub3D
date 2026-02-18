@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 18:56:21 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/18 19:17:08 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_parsefile(t_list **list, int fd)
 	t_list	*newelement;
 
 	line = get_next_line(fd);
-
 	*list = ft_lstnew(line);
 	if (!list)
 		return (ft_closeerror(fd, "Malloc error"));
+	line = get_next_line(fd);
 	while (line)
 	{
 		newelement = ft_lstnew(line);
