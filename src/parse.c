@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/15 18:52:21 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:38:32 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,40 +74,59 @@ int	ft_checktexture(t_data *data, char *str, int type)
 
 int	ft_classify(char *str)
 {
-	if (ft_strncmp(str, "NO", 2) == 0)
+	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]))
 		return (1);
-	if (ft_strncmp(str, "SO", 2) == 0)
+	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]))
 		return (2);
-	if (ft_strncmp(str, "EA", 2) == 0)
+	if (ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]))
 		return (3);
-	if (ft_strncmp(str, "WE", 2) == 0)
+	if (ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]))
 		return (4);
-	if (ft_strncmp(str, "F", 1) == 0)
+	if (ft_strncmp(str, "F", 1) == 0 && ft_isspace(str[1]))
 		return (5);
-	if (ft_strncmp(str, "C", 1) == 0)
+	if (ft_strncmp(str, "C", 1) == 0 && ft_isspace(str[1]))
 		return (6);
 	return (0);
+}
+
+int	ft_readline(char *str, t_data *data, int type, char *origstring)
+{
+	if (type != 0)
+	{
+		if (!ft_checktexture(data, str, type))
+			return (0);
+	}
+	else
+	{
+		ft_putstr_fd("Error reading line \"", 2);
+		write(2, origstring, ft_strlen(origstring) - 1);
+		ft_putstr_fd("\", it does not match any instruction ",2);
+		ft_putstr_fd("(NO, SO, EA, WE, F, C)\n", 2);
+		return (0);
+	}
+	return (1);
 }
 
 int	ft_gettextures(t_list *file, t_data *data)
 {
 	char	*str;
 	int		count;
-	int		type;
 
 	count = 0;
-	while (file->content)
+	while (file->content || count < 6)
 	{
 		str = file->content;
 		while (ft_isspace(*str))
 			str++;
-		type = ft_classify(str);
-		if (type != 0)
+		if (!(*str))
 		{
-			if (!ft_checktexture(data, str, type))
-				return (0);
-			count++;
+			file = file->next;
+			continue;
 		}
+		if (!ft_readline(str, data, ft_classify(str), file->content))
+			return (0);
+		else
+			count++;
 		file = file->next;
 	}
 	if (count != 6)
