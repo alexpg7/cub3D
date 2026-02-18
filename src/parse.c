@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 19:17:08 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/18 19:48:32 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,27 @@ void	ft_assigntype(int type, char *str, t_textures *tex)
 
 int	ft_checktexture(t_data *data, char *str, int type)
 {
-	int	fd;
+	int		fd;
+	char	*filename;
 
-	if (str[0] == 'F' || str[0] == 'C')
-	{
-		if (!ft_isspace(*(str + 1)))
-			return (0);//syntax error
-	}
-	str++;
-	if (!ft_isspace(*(str + 1)))
-		return (0);//syntax error
+	str = str + 2;
 	while (ft_isspace(*str))
 		str++;
-	//before opening, check file extension .xpm
-	fd = open(str, O_RDONLY);
+	filename = ft_filename(str);
+	if (!filename)
+		return (ft_printerrorreturn("Malloc error\n", 1));
+	if (!ft_xpmextension(filename))
+		return (1);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0); //read error;
+	{
+		ft_putstr_fd("Error reading \"", 2);
+		ft_putstr_fd(filename, 2);
+		ft_putstr_fd("\"\n", 2);
+		free(filename);
+		return (1);
+	}
+	free(filename);
 	close(fd);
 	ft_assigntype(type, str, &data->textures);
 	return (0);
