@@ -1,0 +1,80 @@
+#include "cub3D.h"
+
+static int	ft_pow(int a, int b)
+{
+	int	count;
+	int	res;
+
+	count = 0;
+	res = 1;
+	while (count < b)
+	{
+		res = res * a;
+		count++;
+	}
+	return (res);
+}
+
+unsigned int	ft_parse_rgb(char *str)
+{
+	int	num;
+	int	count;
+
+	count = 0;
+	num = 0;
+	if (count < 3)
+	{
+		num = num + ft_atoi(str) * ft_pow(256, 2 - count);
+		while (ft_isdigit(*str))
+			str++;
+		while (ft_isspace(*str))
+			str++;
+		str++;
+		while (ft_isspace(*str))
+			str++;
+		count++;
+	}
+	return ((unsigned int)num);
+}
+
+int	ft_isrgb(char *str)
+{
+	int	num;
+
+	if (ft_strlen(str) < 3)
+		return (0);
+	if (!(ft_isdigit(str[0]) && ft_isdigit(str[1]) && ft_isdigit(str[2])))
+		return (0);
+	num = ft_atoi(str);
+	if (num < 0 || num >= 256)
+		return (0);
+	return (1);
+}
+
+int	ft_checkrgb(t_data *data, char *str, int type)
+{
+	int		count;
+	char	*color;
+
+	str = str + 2;
+	while (ft_isspace(*str))
+		str++;
+	count = 0;
+	color = str;
+	if (count < 3)
+	{
+		if (!ft_isrgb(str))
+			return (ft_printerrorreturn("Color in line is not RGB\n", 2));
+		while (ft_isdigit(*str))
+			str++;
+		while (ft_isspace(*str))
+			str++;
+		if (*str == ',')
+			str++;
+		while (ft_isspace(*str))
+			str++;
+		count++;
+	}
+	ft_assigntype(type, color, &data->textures);
+	return (0);
+}

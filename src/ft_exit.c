@@ -10,10 +10,6 @@ void	ft_freetex(t_textures tex)
 		free(tex.east);
 	if (tex.west)
 		free(tex.west);
-	if (tex.floor)
-		free(tex.floor);
-	if (tex.ceiling)
-		free(tex.ceiling);
 }
 
 void	ft_exit(t_data *data, int ret)

@@ -22,6 +22,7 @@ LIBFT = $(LIBFT_PATH)/libft.a
 SRC = src/cub3D.c \
 	src/parse.c \
 	src/parse_utils.c \
+	src/parse_rgb.c \
 	src/init.c \
 	src/ft_exit.c \
 	src/ft_isclosed.c

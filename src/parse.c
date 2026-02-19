@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 19:48:32 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/19 19:59:46 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_assigntype(int type, char *str, t_textures *tex)
 	else if (type == 4)
 		tex->west = ft_strdup(str);
 	else if (type == 5)
-		tex->floor = ft_strdup(str);
+		tex->floor = ft_parse_rgb(str);
 	else if (type == 6)
-		tex->ceiling = ft_strdup(str);
+		tex->ceiling = ft_parse_rgb(str);
 }
 
 int	ft_checktexture(t_data *data, char *str, int type)
@@ -74,9 +74,9 @@ int	ft_checktexture(t_data *data, char *str, int type)
 		free(filename);
 		return (1);
 	}
-	free(filename);
 	close(fd);
-	ft_assigntype(type, str, &data->textures);
+	ft_assigntype(type, filename, &data->textures);
+	free(filename);
 	return (0);
 }
 
@@ -101,11 +101,22 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 {
 	if (type != 0)
 	{
-		if (!ft_checktexture(data, str, type))
-			return (0);
+		if (type == 5 || type == 6)
+		{
+			if (!ft_checkrgb(data, str, type))
+				return(1);
+		}
+		else if (!ft_checktexture(data, str, type))
+			return (1);
+		return (0);
 	}
 	else
 	{
+		if (str[0] == '0' || str[0] == '1')
+		{
+			ft_putstr_fd("Error: map detected before defining textures\n", 2);
+			return (0);
+		}
 		ft_putstr_fd("Error reading line \"", 2);
 		write(2, origstring, ft_strlen(origstring) - 1);
 		ft_putstr_fd("\", it does not match any instruction ",2);
@@ -121,7 +132,7 @@ int	ft_gettextures(t_list *file, t_data *data)
 	int		count;
 
 	count = 0;
-	while (file->content || count < 6)
+	while (file->content && count < 6)
 	{
 		str = file->content;
 		while (ft_isspace(*str))
