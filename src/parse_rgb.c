@@ -22,7 +22,7 @@ unsigned int	ft_parse_rgb(char *str)
 
 	count = 0;
 	num = 0;
-	if (count < 3)
+	while (count < 3)
 	{
 		num = num + ft_atoi(str) * ft_pow(256, 2 - count);
 		while (ft_isdigit(*str))
