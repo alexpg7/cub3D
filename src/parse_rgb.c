@@ -61,7 +61,7 @@ int	ft_checkrgb(t_data *data, char *str, int type)
 		str++;
 	count = 0;
 	color = str;
-	if (count < 3)
+	while (count < 3)
 	{
 		if (!ft_isrgb(str))
 			return (ft_printerrorreturn("Color in line is not RGB\n", 2));
