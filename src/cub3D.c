@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:08 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 19:03:21 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 15:58:51 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	main(int narg, char **argv)
 	ft_init(&data);
 	if (!ft_checkargs(narg, argv, &data))
 		ft_exit(&data, 1);
+	ft_screendef(&(data.mlx), &data);
+	ft_init_window(&(data.mlx), &data);
 	ft_exit(&data, 0);
 	return (0);
 }

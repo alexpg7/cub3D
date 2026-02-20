@@ -6,11 +6,13 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/19 19:54:37 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 16:02:32 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/Libft/libft.h"
+#include "../lib/minilibx-linux/mlx.h"
+#include "../lib/minilibx-linux/mlx_int.h"
 #include <fcntl.h>
 
 //list of textures
@@ -25,9 +27,24 @@ typedef struct s_textures
 	//should also save the img (minilibx) associated
 }	t_textures;
 
+//struct for mlx variables
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	int		x;
+	int		y;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_mlx;
+
 //struct where all data goes ("global variable")
 typedef struct s_data
 {
+	t_mlx		mlx;
 	t_textures	textures;
 }	t_data;
 
@@ -50,9 +67,11 @@ int				ft_checkrgb(t_data *data, char *str, int type);
 unsigned int	ft_parse_rgb(char *str);
 
 // ft_exit.c
-void			ft_exit(t_data *data, int ret);
+int				ft_exit(t_data *data, int ret);
 
 // init.c
 int				ft_init(t_data *data);
+void			ft_screendef(t_mlx *mlx, t_data *data);
+void			ft_init_window(t_mlx *mlx, t_data *data);
 
 

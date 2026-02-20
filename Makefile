@@ -1,9 +1,14 @@
 NAME = cub3D
-FLAGS = -Wall -Wextra -Werror
-SAN = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -lmlx \
+	-L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd
+CFLAGS = -Wall -Wextra -Werror -Ilib/minilibx-linux
+LDFLAGS = -Llib/minilibx-linux
+LDLIBS = -lmlx -lXext -lX11 -lm -lz -lbsd
+SAN = $(FLAGS) -fsanitize=address
 OPTION = -MMD -c -I. -Iinc/
 # Paths
 LIBFT_PATH = lib/Libft
+MINILIBX_PATH = lib/minilibx-linux
 
 # Colors
 BRED = \033[1;31m
@@ -18,6 +23,8 @@ INCLUDE = $(LIBFT_PATH)/libft.h inc/cub3D.h Makefile
 
 # Library files
 LIBFT = $(LIBFT_PATH)/libft.a
+
+MINILIBX = $(MINILIBX_PATH)/libmlx.a
 
 SRC = src/cub3D.c \
 	src/parse.c \
@@ -37,14 +44,16 @@ all: $(NAME)
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
 
+$(MINILIBX):
+	$(MAKE) -C $(MINILIBX_PATH)
 
-$(NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(OBJ) $(FLAGS) $(LIBFT) -lreadline -o $(NAME)
+$(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
+	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled ${BYEL}$(NAME)${NC}"
 
 # Compile object files and generate .d files for dependencies
 %.o: %.c $(INCLUDE)
-	@cc $(FLAGS) $(OPTION) $< -o $@
+	@cc $(CFLAGS) $(OPTION)  $< -o $@
 
 # Include the generated dependency files
 -include $(DEP)
@@ -60,6 +69,7 @@ fclean:
 	@/bin/rm -f $(OBJ) $(DEP)
 	@echo "🗑️  $(BRED)Removed $(YEL)$(OBJ)${NC}"
 	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@$(MAKE) -C $(MINILIBX_PATH) clean
 	@/bin/rm -f $(NAME)
 	@echo "🗑️  $(BRED)Removed $(BYEL)$(NAME)${NC}"
 

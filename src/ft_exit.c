@@ -12,8 +12,9 @@ void	ft_freetex(t_textures tex)
 		free(tex.west);
 }
 
-void	ft_exit(t_data *data, int ret)
+int	ft_exit(t_data *data, int ret)
 {
 	ft_freetex(data->textures);
 	exit(ret);
+	return (ret);
 }
