@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 16:30:39 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 17:05:58 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,21 +179,21 @@ int	ft_checkmap(int fd, t_data *data)
 		num_rows++;
 		node = node->next;
 	}
-	map_array = malloc((num_rows + 1) * sizeof(char *));
+	map_array = (char **)malloc((num_rows + 1) * sizeof(char *));
 	if (!map_array)
 		return (ft_closeerror(fd, "Malloc error"));
 	while (num_cols > 0)
 	{
-		map_array[num_rows] = malloc((num_cols + 1) * sizeof(int));
+		map_array[num_rows] = (char *)malloc((num_cols + 1) * sizeof(int));
 		if (!map_array[num_rows])
 			return (ft_closeerror(fd, "Malloc error"));
 		num_cols--;
 	}
-
 	while(file)
 	{
 		ft_printf("%s", file->content);
 		file = file->next;
 	}
+	//Leaks from map_array and file
 	return (1);
 }
