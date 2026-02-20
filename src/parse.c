@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/19 20:06:45 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 16:30:39 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,5 @@ int	ft_checkmap(int fd, t_data *data)
 		ft_printf("%s", file->content);
 		file = file->next;
 	}
-	return (0);
+	return (1);
 }

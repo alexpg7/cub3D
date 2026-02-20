@@ -29,7 +29,8 @@ unsigned int	ft_parse_rgb(char *str)
 			str++;
 		while (ft_isspace(*str))
 			str++;
-		str++;
+		if (*str)
+			str++;
 		while (ft_isspace(*str))
 			str++;
 		count++;
