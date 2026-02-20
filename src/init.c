@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 16:03:56 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 16:51:10 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	//mlx_mouse_hook(mlx->win, mouse_hook, vars);
 	//mlx_key_hook(mlx->win, key_hook, vars);
-	mlx_hook(mlx->win, 17, 0L, &ft_exit, data);
+	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
 	mlx_loop(mlx->mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 16:02:32 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/20 16:50:31 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ unsigned int	ft_parse_rgb(char *str);
 
 // ft_exit.c
 int				ft_exit(t_data *data, int ret);
+
+// hooks.c
+int				ft_hookexit(t_data *data);
 
 // init.c
 int				ft_init(t_data *data);

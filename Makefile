@@ -32,7 +32,8 @@ SRC = src/cub3D.c \
 	src/parse_rgb.c \
 	src/init.c \
 	src/ft_exit.c \
-	src/ft_isclosed.c
+	src/ft_isclosed.c \
+	src/hooks.c
 
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)
