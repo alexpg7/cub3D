@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 18:36:46 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:19:44 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,50 +63,5 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 		ft_putstr_fd("(NO, SO, EA, WE, F, C)\n", 2);
 		return (0);
 	}
-	return (1);
-}
-
-int	ft_checkmap(int fd, t_data *data)
-{
-	t_list	*file;
-	t_list	*node;
-	int		num_rows;
-	int		num_cols;
-	char	**map_array;
-
-	if (!ft_parsefile(&file, fd))
-		return (0);
-	if (!ft_gettextures(file, data))
-	{
-		ft_lstclear(&file, &free);
-		return (0);
-	}
-	//create matrix funtion
-	node = file;
-	num_cols = 0;
-	num_rows = 0;
-	while (node)
-	{
-		if (ft_strlen((char *)node->content) > (size_t)num_cols)
-			num_cols = ft_strlen((char *)node->content);
-		num_rows++;
-		node = node->next;
-	}
-	map_array = (char **)malloc((num_rows + 1) * sizeof(char *));
-	if (!map_array)
-		return (ft_closeerror(fd, "Malloc error"));
-	while (num_cols > 0)
-	{
-		map_array[num_rows] = (char *)malloc((num_cols + 1) * sizeof(int));
-		if (!map_array[num_rows])
-			return (ft_closeerror(fd, "Malloc error"));
-		num_cols--;
-	}
-	while (file)
-	{
-		ft_printf("%s", file->content);
-		file = file->next;
-	}
-	//Leaks from map_array and file
 	return (1);
 }

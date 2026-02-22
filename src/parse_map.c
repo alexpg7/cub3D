@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarodrig <sarodrig@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:46:31 by sarodrig          #+#    #+#             */
-/*   Updated: 2026/02/22 18:01:48 by sarodrig         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:19:06 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int	ft_checkmap(int fd, t_data *data)
 
 	if (!ft_parsefile(&file, fd))
 		return (0);
-	if (!ft_get_textures(file, data))
+	if (!ft_gettextures(file, data))
 	{
 		ft_lstclear(&file, &free);
 		return (0);
@@ -212,14 +212,14 @@ int	ft_checkmap(int fd, t_data *data)
 // 		num_cols--;
 // 	}
 
-	
-	
+
+
 // 	while (file)
 // 	{
 // 		ft_printf("%s", file->content);
 // 		file = file->next;
 // 	}
-	
+
 // 	//Leaks from map_array and file
 // 	return (1);
 // }
