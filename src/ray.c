@@ -6,33 +6,11 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:22:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 17:51:04 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:14:28 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-float	ft_distance(t_vec2 v1, t_vec2 v2)
-{
-	return ((float)hypot(v1.x - v2.x, v1.y - v2.y));
-}
-
-char	get_cell(char **map, t_vec2 pos, t_vec2 dir)//, int hit_vert)
-{
-	int	map_x;
-	int	map_y;
-
-	map_x = (int)floor(pos.x + dir.x * 0.00001);
-	map_y = (int)floor(pos.y + dir.y * 0.00001);
-	return (map[map_x][map_y]);
-}
-
-float	ft_div0(float f1, float f2)
-{
-	if (f2 == 0.0)
-		return (1000000.0);
-	return (f1 / f2);
-}
 
 char	ft_nearestwall(t_ray *ray, char **map)
 {
@@ -61,21 +39,35 @@ char	ft_nearestwall(t_ray *ray, char **map)
 	return (get_cell(map, pos, ray->dir));
 }
 
-t_ray	ft_raycast(t_ray ray, char **map, t_data *data)
+t_texture	ft_choosetex(t_vec2 pos, t_vec2 dir, t_data *data)
 {
-	char	hit;
+	if (pos.x - floor(pos.x) > pos.y - floor(pos.y))//hit with x axis
+	{
+		if (dir.y > 0)
+			return (data->textures.west);
+		else
+			return (data->textures.east);
+	}
+	else
+	{
+		if (dir.x > 0)
+			return (data->textures.north);
+		else
+			return (data->textures.south);
+	}
+}
 
-	hit = map[(int)floor(ray.pos.x)][(int)floor(ray.pos.y)];
+t_texture	ft_raycast(t_ray *ray, char **map, t_data *data)
+{
+	char		hit;
+
+	hit = map[(int)floor(ray->pos.x)][(int)floor(ray->pos.y)];
 	while (hit != '1')//+ some conditions for safety (like count < dimensions of the map)
 	{
-		hit = ft_nearestwall(&ray, map);
-		/*if (hit == '1')
-			printf("hit: %f, %f\n", ray.pos.x, ray.pos.y);*/
+		hit = ft_nearestwall(ray, map);
 	}
-	data->map = data->map;
-	return (ray);
-	//printf("dist: %f\n", ft_distance(ray.start, ray.pos));
-	//return ((unsigned int)((float)0xAAAAAA * ft_distance(ray.start, ray.pos) / 100000));
+	ray->dist = ft_distance(ray->pos, ray->start);
+	return (ft_choosetex(ray->pos, ray->dir, data));
 }
 
 t_ray	ft_startray(t_vec2 start, float dir)

@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 18:37:06 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:14:46 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_ray
 	t_vec2	start;
 	t_vec2	pos;
 	t_vec2	dir;
+	float	dist;
 }	t_ray;
 
 typedef struct s_player
@@ -103,10 +104,6 @@ int				ft_printerrorreturn(char *str, int ret);
 int				ft_xpmextension(char *filename);
 char			*ft_filename(char *str);
 
-// parse_rgb.c
-int				ft_checkrgb(t_data *data, char *str, int type);
-unsigned int	ft_parse_rgb(char *str);
-
 // ft_exit.c
 int				ft_exit(t_data *data, int ret);
 
@@ -124,13 +121,21 @@ void			ft_paintscreen(t_data *data);
 // ray.c
 float			ft_distance(t_vec2 v1, t_vec2 v2);
 t_ray			ft_startray(t_vec2 start, float dir);
-t_ray			ft_raycast(t_ray ray, char **map, t_data *data);
+t_texture		ft_raycast(t_ray *ray, char **map, t_data *data);
+
+// ray_utils.c
+char			get_cell(char **map, t_vec2 pos, t_vec2 dir);
+float			ft_div0(float f1, float f2);
 
 // parse_textures.c
 int				ft_checktexture(t_data *data, char *str, int type);
 int				ft_gettextures(t_list *file, t_data *data);
 void			ft_assigntype(int type, char *str, t_textures *tex);
 int				ft_classify(char *str);
+
+// parse_rgb.c
+int				ft_checkrgb(t_data *data, char *str, int type);
+unsigned int	ft_parse_rgb(char *str);
 
 // textures.c
 void			ft_loadtex(t_texture *tex, void *mlx);

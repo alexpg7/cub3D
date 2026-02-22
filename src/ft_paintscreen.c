@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 18:20:01 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:15:40 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,44 +45,30 @@ unsigned int pixel_get(t_texture tex, int x, int y)
 
 void	ft_paintray(int	x, t_data *data, float angle, float da)
 {
-	t_ray	ray;
-	int		color;
-	int		y;
-	float	dist;
-	float	an;
+	t_ray		ray;
+	int			color;
+	int			y;
+	float		an;
+	int			h;
+	t_texture	tex;
 
-	ray = ft_startray(data->player.pos, angle);//data->player.dir);//angle instead of player.dir
-	ray = ft_raycast(ray, data->map, data);
-	color = pixel_get(data->textures.north, (int)((ray.pos.x - floor(ray.pos.x)) * data->textures.north.img_w), (int)(data->textures.north.img_h * data->player.h));
-	pixel_put(&data->mlx, x, data->mlx.y, color);
-	y = data->player.h * data->mlx.y;
-	dist = ft_distance(ray.pos, ray.start);
-	an = 0;
+	ray = ft_startray(data->player.pos, angle);
+	tex = ft_raycast(&ray, data->map, data);
+	y = 0;
+	an = 0 - data->mlx.y / 2 * da;
 	while (y < data->mlx.y)
 	{
-		if ((int)(data->textures.north.img_h * (data->player.h + dist * tan(an))) <= data->textures.north.img_h)
-			color = pixel_get(data->textures.north, (int)((ray.pos.x - floor(ray.pos.x)) * data->textures.north.img_w), (int)(data->textures.north.img_h * (data->player.h + dist * tan(an))));
+		h = (int)(tex.img_h * (data->player.h + ray.dist * tan(an)));
+		if (h > 0 && h <= tex.img_h)
+			color = pixel_get(tex, (int)((ray.pos.x - floor(ray.pos.x)) * tex.img_w), h);
+		else if (h > 0 && h > tex.img_h)
+			color = data->textures.ceiling;
 		else
 			color = data->textures.floor;
-		y++;
 		pixel_put(&data->mlx, x, y, color);
+		y++;
 		an = an + da;
 	}
-	y = data->player.h * data->mlx.y;
-	an = 0;
-	while (y > 0)
-	{
-		if ((int)(data->textures.north.img_h * (data->player.h + dist * tan(an))) <= data->textures.north.img_h && (int)(data->textures.north.img_h * (data->player.h + dist * tan(an))) > 0)
-			color = pixel_get(data->textures.north, (int)((ray.pos.x - floor(ray.pos.x)) * data->textures.north.img_w), (int)(data->textures.north.img_h * (data->player.h + dist * tan(an))));
-		else
-			color = data->textures.ceiling;
-		y--;
-		pixel_put(&data->mlx, x, y, color);
-		an = an - da;
-	}
-	/*for (int y = 0; y < data->mlx.y; y++)
-		pixel_put(&data->mlx, x, y, color);*/
-	angle = angle + 1;
 }
 
 void	ft_paintscreen(t_data *data)
@@ -97,7 +83,7 @@ void	ft_paintscreen(t_data *data)
 	step = 0;
 	while (step < data->mlx.x)
 	{
-		ft_paintray(step, data, angle + da * step, da);
+		ft_paintray(data->mlx.x - step, data, angle + da * step, da);
 		step++;
 	}
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);

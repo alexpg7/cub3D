@@ -39,6 +39,7 @@ SRC				= cub3D.c \
 				  init.c \
 				  ft_paintscreen.c \
 				  ray.c \
+				  ray_utils.c \
 				  ft_exit.c \
 				  ft_isclosed.c \
 				  hooks.c \
