@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:14:20 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:14:43 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:26:06 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_exit(t_data *data, int ret)
 {
 	ft_freetex(data->textures);
 	ft_close_mlx(&(data->mlx));
+	if (data->map)
+		ft_freestrarr(&(data->map), 0);
 	exit(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:15:29 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:25:00 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_data
 {
 	t_mlx		mlx;
 	t_textures	textures;
+	char		**map;
 }	t_data;
 
 // cub3d.c functions

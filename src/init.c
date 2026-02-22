@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:15:14 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:26:27 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int	ft_init(t_data *data)
 	data->textures.south = NULL;
 	data->textures.floor = 0;
 	data->textures.ceiling = 0;
+	data->map = NULL;
 	return (0);
 }
