@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:25:00 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 12:11:35 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,16 @@ typedef struct s_vec2
 typedef struct s_player
 {
 	t_vec2	pos;
-	t_vec2	dir;
+	float	dir;
 	float	h;
+	float	fov;
 }	t_player;
 
 //struct where all data goes ("global variable")
 typedef struct s_data
 {
 	t_mlx		mlx;
+	t_player	player;
 	t_textures	textures;
 	char		**map;
 }	t_data;
@@ -90,3 +92,6 @@ int				ft_hookexit(t_data *data);
 int				ft_init(t_data *data);
 void			ft_screendef(t_mlx *mlx, t_data *data);
 void			ft_init_window(t_mlx *mlx, t_data *data);
+
+// ft_paintscreen
+void			ft_paintscreen(t_data *data);

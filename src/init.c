@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:26:27 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 12:09:39 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 		perror("mlx address get");
 		ft_exit(data, 1);
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+	ft_paintscreen(data);
 	//mlx_mouse_hook(mlx->win, mouse_hook, vars);
 	//mlx_key_hook(mlx->win, key_hook, vars);
 	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
