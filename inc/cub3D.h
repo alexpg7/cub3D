@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 16:50:31 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/22 11:13:07 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 }	t_mlx;
+
+typedef struct s_vec2
+{
+	float	x;
+	float	y;
+}	t_vec2;
+
+typedef struct s_player
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	float	h;
+}	t_player;
 
 //struct where all data goes ("global variable")
 typedef struct s_data
