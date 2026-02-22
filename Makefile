@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sarodrig <sarodrig@student.42barcelona.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
+#    Updated: 2026/02/22 18:07:15 by sarodrig         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # #### DEFINES ####
 BRED			= \e[1;31m
 BYEL			= \e[1;33m
@@ -36,6 +48,7 @@ SRC				= cub3D.c \
 				  parse.c \
 				  parse_utils.c \
 				  parse_rgb.c \
+				  parse_map.c \
 				  init.c \
 				  ft_paintscreen.c \
 				  ray.c \
@@ -46,7 +59,7 @@ SRC				= cub3D.c \
 				  parse_textures.c
 
 OBJ 			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
-DEP 			= $(SRC:.c=.d)
+DEP 			= $(OBJ:.o=.d)
 
 # #### FILE TARGETS ####
 $(LIBFT):
@@ -88,8 +101,8 @@ re: fclean all
 
 # #### TEST TARGETS ####
 san:
-	@$(CC) $(OBJ) $(SAN) $(LIBFT) $(MINILIBX) -o $(NAME)
+	@$(CC) $(OBJ) $(SAN) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled (sanitize) ${BYEL}$(NAME)${NC}"
 
 test: san
-	@./$(NAME) maps/map.cub
+	@./$(NAME) map/map.cub
