@@ -34,7 +34,8 @@ SRC = src/cub3D.c \
 	src/ft_exit.c \
 	src/ft_isclosed.c \
 	src/hooks.c \
-	src/ft_paintscreen.c
+	src/ft_paintscreen.c \
+	src/ray.c
 
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)

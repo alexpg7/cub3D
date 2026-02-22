@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 12:11:35 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 14:57:47 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "../lib/minilibx-linux/mlx.h"
 #include "../lib/minilibx-linux/mlx_int.h"
 #include <fcntl.h>
+#include <stdio.h>
+#include <math.h>
+
+#define PI 3.1415926535
 
 //list of textures
 typedef struct s_textures
@@ -47,10 +51,17 @@ typedef struct s_vec2
 	float	y;
 }	t_vec2;
 
+typedef struct s_ray
+{
+	t_vec2	start;
+	t_vec2	pos;
+	t_vec2	dir;
+}	t_ray;
+
 typedef struct s_player
 {
 	t_vec2	pos;
-	float	dir;
+	float	look_dir;
 	float	h;
 	float	fov;
 }	t_player;
@@ -95,3 +106,8 @@ void			ft_init_window(t_mlx *mlx, t_data *data);
 
 // ft_paintscreen
 void			ft_paintscreen(t_data *data);
+
+// ray.c
+float			ft_distance(t_vec2 v1, t_vec2 v2);
+t_ray			ft_startray(t_vec2 start, float dir);
+int				ft_raycast(t_ray ray, char **map, t_data *data);
