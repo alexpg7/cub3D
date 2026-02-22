@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 15:53:55 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:09:09 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void	ft_fillmap(t_data *data)
 	data->player.look_dir = 3 * PI / 2;
 	data->player.h = 0.5;
 	data->player.fov = 120.0 * PI / 180.0;
+}
+unsigned int pixel_get(void *img, int x, int y)
+{
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+
+	if (!img)
+		return (0); // protección
+	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
+	if (!data)
+		return (0);
+	return (*(unsigned int *)(data + y * size_line + x * (bpp / 8)));
 }
 
 void	pixel_put(t_mlx *mlx, int x, int y, int color)

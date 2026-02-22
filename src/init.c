@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 16:10:07 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:08:17 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 		perror("mlx init");
 		ft_exit(data, 1);
 	}
+	ft_loadtextures(data);
 	mlx->win = mlx_new_window(mlx->mlx, mlx->x, mlx->y, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->x, mlx->y);
 	if (!(mlx->win) || !(mlx->img))

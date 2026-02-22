@@ -41,7 +41,8 @@ SRC				= cub3D.c \
 				  ray.c \
 				  ft_exit.c \
 				  ft_isclosed.c \
-				  hooks.c
+				  hooks.c \
+				  textures.c
 
 OBJ 			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 DEP 			= $(SRC:.c=.d)
