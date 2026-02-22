@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 18:32:11 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:37:06 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ t_ray			ft_raycast(t_ray ray, char **map, t_data *data);
 // parse_textures.c
 int				ft_checktexture(t_data *data, char *str, int type);
 int				ft_gettextures(t_list *file, t_data *data);
+void			ft_assigntype(int type, char *str, t_textures *tex);
+int				ft_classify(char *str);
 
 // textures.c
 void			ft_loadtex(t_texture *tex, void *mlx);

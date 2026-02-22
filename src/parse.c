@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 17:05:26 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:36:46 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,6 @@ int	ft_parsefile(t_list **list, int fd)
 	}
 	close(fd);
 	return (1);
-}
-void	ft_assigntype(int type, char *str, t_textures *tex)
-{
-	if (type == 1)
-		tex->north.path = ft_strdup(str);
-	else if (type == 2)
-		tex->south.path = ft_strdup(str);
-	else if (type == 3)
-		tex->east.path = ft_strdup(str);
-	else if (type == 4)
-		tex->west.path = ft_strdup(str);
-	else if (type == 5)
-		tex->floor = ft_parse_rgb(str);
-	else if (type == 6)
-		tex->ceiling = ft_parse_rgb(str);
-}
-
-int	ft_classify(char *str)
-{
-	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]))
-		return (1);
-	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]))
-		return (2);
-	if (ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]))
-		return (3);
-	if (ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]))
-		return (4);
-	if (ft_strncmp(str, "F", 1) == 0 && ft_isspace(str[1]))
-		return (5);
-	if (ft_strncmp(str, "C", 1) == 0 && ft_isspace(str[1]))
-		return (6);
-	return (0);
 }
 
 int	ft_readline(char *str, t_data *data, int type, char *origstring)
