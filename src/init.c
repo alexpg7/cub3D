@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 16:51:10 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/22 11:15:14 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_init(t_data *data)
 {
 	data->textures.east = NULL;
 	data->textures.west = NULL;
-	data->textures.north= NULL;
+	data->textures.north = NULL;
 	data->textures.south = NULL;
 	data->textures.floor = 0;
 	data->textures.ceiling = 0;

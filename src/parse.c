@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/20 17:05:58 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/22 11:18:26 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 		if (type == 5 || type == 6)
 		{
 			if (!ft_checkrgb(data, str, type))
-				return(1);
+				return (1);
 		}
 		else if (!ft_checktexture(data, str, type))
 			return (1);
@@ -119,7 +119,7 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 		}
 		ft_putstr_fd("Error reading line \"", 2);
 		write(2, origstring, ft_strlen(origstring) - 1);
-		ft_putstr_fd("\", it does not match any instruction ",2);
+		ft_putstr_fd("\", it does not match any instruction ", 2);
 		ft_putstr_fd("(NO, SO, EA, WE, F, C)\n", 2);
 		return (0);
 	}
@@ -140,7 +140,7 @@ int	ft_gettextures(t_list *file, t_data *data)
 		if (!(*str))
 		{
 			file = file->next;
-			continue;
+			continue ;
 		}
 		if (!ft_readline(str, data, ft_classify(str), file->content))
 			return (0);
@@ -189,7 +189,7 @@ int	ft_checkmap(int fd, t_data *data)
 			return (ft_closeerror(fd, "Malloc error"));
 		num_cols--;
 	}
-	while(file)
+	while (file)
 	{
 		ft_printf("%s", file->content);
 		file = file->next;

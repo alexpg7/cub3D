@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/22 11:18:19 by alpascua          #+#    #+#             */
+/*   Updated: 2026/02/22 11:18:39 by alpascua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	ft_xpmextension(char *filename)
@@ -9,6 +21,7 @@ int	ft_xpmextension(char *filename)
 	ft_putstr_fd(" has no .xpm extension\n", 2);
 	return (0);
 }
+
 char	*ft_filename(char *str)
 {
 	int		i;

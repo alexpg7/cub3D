@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:13:07 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:15:29 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,3 @@ int				ft_hookexit(t_data *data);
 int				ft_init(t_data *data);
 void			ft_screendef(t_mlx *mlx, t_data *data);
 void			ft_init_window(t_mlx *mlx, t_data *data);
-
-
