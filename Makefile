@@ -1,86 +1,93 @@
-NAME = cub3D
-FLAGS = -Wall -Wextra -Werror -lmlx \
-	-L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd
-CFLAGS = -Wall -Wextra -Werror -Ilib/minilibx-linux
-LDFLAGS = -Llib/minilibx-linux
-LDLIBS = -lmlx -lXext -lX11 -lm -lz -lbsd
-SAN = $(FLAGS) -fsanitize=address
-OPTION = -MMD -c -I. -Iinc/
-# Paths
-LIBFT_PATH = lib/Libft
-MINILIBX_PATH = lib/minilibx-linux
+# #### DEFINES ####
+BRED			= \e[1;31m
+BYEL			= \e[1;33m
+BGREEN			= \e[1;32m
+RED				= \e[0;31m
+YEL				= \e[0;33m
+GREEN			= \e[0;32m
+NC				= \e[0m
 
-# Colors
-BRED = \033[1;31m
-BYEL = \033[1;33m
-BGREEN = \033[1;32m
-RED = \033[0;31m
-YEL = \033[0;33m
-GREEN = \033[0;32m
-NC = \033[0m
+# #### VARIABLES ####
+NAME			= cub3D
 
-INCLUDE = $(LIBFT_PATH)/libft.h inc/cub3D.h Makefile
+FLAGS			= -Wall -Wextra -Werror -lmlx \
+				  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd
+CFLAGS			= -Wall -Wextra -Werror -Ilib/minilibx-linux
+LDFLAGS			= -Llib/minilibx-linux
+LDLIBS			= -lmlx -lXext -lX11 -lm -lz -lbsd
+OPTIONS			= -MMD -c -I. -Iinc/
+SAN				= $(FLAGS) -fsanitize=address
 
-# Library files
-LIBFT = $(LIBFT_PATH)/libft.a
+# Dirs
+SRC_DIR			= src/
+INC_DIR			= inc/
+OBJ_DIR			= obj/
+LIBFT_DIR		= lib/Libft/
+MINILIBX_DIR	= lib/minilibx-linux/
 
-MINILIBX = $(MINILIBX_PATH)/libmlx.a
+# Library binaries
+LIBFT			= $(LIBFT_DIR)libft.a
+MINILIBX		= $(MINILIBX_DIR)libmlx.a
 
-SRC = src/cub3D.c \
-	src/parse.c \
-	src/parse_utils.c \
-	src/parse_rgb.c \
-	src/init.c \
-	src/ft_exit.c \
-	src/ft_isclosed.c \
-	src/hooks.c \
-	src/ft_paintscreen.c \
-	src/ray.c
+# Project headers, sources, objects, and dependencies
+INC				= $(INC_DIR)cub3D.h $(LIBFT_DIR)libft.h
 
-OBJ = $(SRC:.c=.o)
-DEP = $(SRC:.c=.d)
+SRC				= cub3D.c \
+				  parse.c \
+				  parse_utils.c \
+				  parse_rgb.c \
+				  init.c \
+				  ft_paintscreen.c \
+				  ray.c \
+				  ft_exit.c \
+				  ft_isclosed.c \
+				  hooks.c
 
-# Compile the final executable
-all: $(NAME)
+OBJ 			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
+DEP 			= $(SRC:.c=.d)
 
-# Rebuild Libft if any object file changes
+# #### FILE TARGETS ####
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_PATH)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MINILIBX):
-	$(MAKE) -C $(MINILIBX_PATH)
+	@$(MAKE) -C $(MINILIBX_DIR)
+
+# Compile object files and generate .d files for dependencies
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@cc $(CFLAGS) $(OPTIONS) $< -o $@
+
+# Include the generated dependency files
+-include $(DEP)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled ${BYEL}$(NAME)${NC}"
 
-# Compile object files and generate .d files for dependencies
-%.o: %.c $(INCLUDE)
-	@cc $(CFLAGS) $(OPTION)  $< -o $@
+# #### PHONY TARGETS ####
+.PHONY: all, clean, fclean, re
+.DEFAULT_GOAL = all
 
-# Include the generated dependency files
--include $(DEP)
+all: $(NAME)
 
-# Clean object and dependency files
 clean:
-	@/bin/rm -f $(OBJ) $(DEP)
-	@$(MAKE) -C $(LIBFT_PATH) clean
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@/bin/rm -rf $(OBJ_DIR)
 	@echo "🗑️  $(BRED)Removed $(YEL)$(OBJ)${NC}"
 
-# Full clean
-fclean:
-	@/bin/rm -f $(OBJ) $(DEP)
-	@echo "🗑️  $(BRED)Removed $(YEL)$(OBJ)${NC}"
-	@$(MAKE) -C $(LIBFT_PATH) fclean
-	@$(MAKE) -C $(MINILIBX_PATH) clean
+fclean: clean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(MINILIBX_DIR) clean
 	@/bin/rm -f $(NAME)
 	@echo "🗑️  $(BRED)Removed $(BYEL)$(NAME)${NC}"
 
-# Rebuild everything
 re: fclean all
 
+# #### TEST TARGETS ####
 san:
-	@$(CC) $(OBJ) $(SAN) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJ) $(SAN) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled (sanitize) ${BYEL}$(NAME)${NC}"
 
-.PHONY: all, clean, fclean, re
+test: san
+	@./$(NAME) maps/map.cub
