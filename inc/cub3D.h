@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 17:07:27 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:32:11 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_texture
 	void	*img;
 	int		img_w;
 	int		img_h;
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }	t_texture;
 
 typedef struct s_textures
@@ -120,10 +124,12 @@ void			ft_paintscreen(t_data *data);
 // ray.c
 float			ft_distance(t_vec2 v1, t_vec2 v2);
 t_ray			ft_startray(t_vec2 start, float dir);
-int				ft_raycast(t_ray ray, char **map, t_data *data);
+t_ray			ft_raycast(t_ray ray, char **map, t_data *data);
 
-// textures.c
+// parse_textures.c
 int				ft_checktexture(t_data *data, char *str, int type);
 int				ft_gettextures(t_list *file, t_data *data);
+
+// textures.c
 void			ft_loadtex(t_texture *tex, void *mlx);
 int				ft_loadtextures(t_data *data);

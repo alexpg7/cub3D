@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:22:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 15:03:58 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:51:04 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	ft_nearestwall(t_ray *ray, char **map)
 	return (get_cell(map, pos, ray->dir));
 }
 
-int	ft_raycast(t_ray ray, char **map, t_data *data)
+t_ray	ft_raycast(t_ray ray, char **map, t_data *data)
 {
 	char	hit;
 
@@ -73,8 +73,9 @@ int	ft_raycast(t_ray ray, char **map, t_data *data)
 			printf("hit: %f, %f\n", ray.pos.x, ray.pos.y);*/
 	}
 	data->map = data->map;
+	return (ray);
 	//printf("dist: %f\n", ft_distance(ray.start, ray.pos));
-	return ((unsigned int)((float)0xAAAAAA * ft_distance(ray.start, ray.pos) / 100000));
+	//return ((unsigned int)((float)0xAAAAAA * ft_distance(ray.start, ray.pos) / 100000));
 }
 
 t_ray	ft_startray(t_vec2 start, float dir)
