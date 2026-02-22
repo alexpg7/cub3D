@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:14:20 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:26:06 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:04:22 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	ft_close_mlx(t_mlx *mlx)
 
 void	ft_freetex(t_textures tex)
 {
-	if (tex.north)
-		free(tex.north);
-	if (tex.south)
-		free(tex.south);
-	if (tex.east)
-		free(tex.east);
-	if (tex.west)
-		free(tex.west);
+	if (tex.north.path)
+		free(tex.north.path);
+	if (tex.south.path)
+		free(tex.south.path);
+	if (tex.east.path)
+		free(tex.east.path);
+	if (tex.west.path)
+		free(tex.west.path);
 }
 
 int	ft_exit(t_data *data, int ret)

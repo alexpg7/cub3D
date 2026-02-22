@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 14:57:47 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:04:38 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,23 @@
 #define PI 3.1415926535
 
 //list of textures
+
+typedef struct s_texture
+{
+	char	*path;
+	void	*img;
+	int		img_w;
+	int		img_h;
+}	t_texture;
+
 typedef struct s_textures
 {
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
+	t_texture		north;
+	t_texture		south;
+	t_texture		east;
+	t_texture		west;
 	unsigned int	floor;
 	unsigned int	ceiling;
-	//should also save the img (minilibx) associated
 }	t_textures;
 
 //struct for mlx variables

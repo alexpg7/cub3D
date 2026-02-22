@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 15:31:38 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 15:53:55 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_fillmap(t_data *data)
 {
-	data->map = (char **)malloc(sizeof(char *) * 7);
+	data->map = (char **)malloc(sizeof(char *) * 8);
 	data->map[0] = ft_strdup("11111111111");
 	data->map[1] = ft_strdup("10000000001");
 	data->map[2] = ft_strdup("100000000W1");
-	data->map[3] = ft_strdup("10010000001");
-	data->map[4] = ft_strdup("10000000001");
-	data->map[5] = ft_strdup("11111111111");
-	data->map[6] = NULL;
+	data->map[3] = ft_strdup("10000000001");
+	data->map[4] = ft_strdup("10010000001");
+	data->map[5] = ft_strdup("10000000001");
+	data->map[6] = ft_strdup("11111111111");
+	data->map[7] = NULL;
 	data->player.pos.x = 2.5;
 	data->player.pos.y = 9.5;
 	data->player.look_dir = 3 * PI / 2;

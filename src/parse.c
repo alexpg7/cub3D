@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:18:26 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:09:39 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	ft_parsefile(t_list **list, int fd)
 void	ft_assigntype(int type, char *str, t_textures *tex)
 {
 	if (type == 1)
-		tex->north = ft_strdup(str);
+		tex->north.path = ft_strdup(str);
 	else if (type == 2)
-		tex->south = ft_strdup(str);
+		tex->south.path = ft_strdup(str);
 	else if (type == 3)
-		tex->east = ft_strdup(str);
+		tex->east.path = ft_strdup(str);
 	else if (type == 4)
-		tex->west = ft_strdup(str);
+		tex->west.path = ft_strdup(str);
 	else if (type == 5)
 		tex->floor = ft_parse_rgb(str);
 	else if (type == 6)
@@ -123,6 +123,23 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 		ft_putstr_fd("(NO, SO, EA, WE, F, C)\n", 2);
 		return (0);
 	}
+	return (1);
+}
+
+void	ft_loadtex(t_texture *tex)
+{
+	void	*img;
+
+	img = tex->img;
+	img = mlx_xpm_file_to_image(NULL, tex->path, &tex->img_w, &tex->img_h);
+}
+
+int	ft_loadtextures(t_data *data)
+{
+	ft_loadtex(&data->textures.north);
+	ft_loadtex(&data->textures.south);
+	ft_loadtex(&data->textures.west);
+	ft_loadtex(&data->textures.east);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 12:09:39 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:10:07 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 
 int	ft_init(t_data *data)
 {
-	data->textures.east = NULL;
-	data->textures.west = NULL;
-	data->textures.north = NULL;
-	data->textures.south = NULL;
+	data->textures.east.path = NULL;
+	data->textures.west.path = NULL;
+	data->textures.north.path = NULL;
+	data->textures.south.path = NULL;
 	data->textures.floor = 0;
 	data->textures.ceiling = 0;
 	data->map = NULL;
