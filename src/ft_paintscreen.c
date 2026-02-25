@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/25 14:58:26 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/25 15:12:56 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,19 @@ void	ft_fillmap(t_data *data)
 	data->player.fov = 90.0 * PI / 180.0;
 }
 
-void	pixel_put(t_mlx *mlx, int x, int y, int color)
+unsigned int	ft_getcolor(t_texture tex, t_ray ray, float h)
 {
-	char	*dst;
+	float	dist;
 
-	dst = mlx->addr + y * mlx->line_length + x * mlx->bits_per_pixel / 8;
-	*(unsigned int *)dst = color;
-}
-
-unsigned int pixel_get(t_texture tex, int x, int y)
-{
-	return (*(unsigned int *)(tex.data + y * tex.size_line + x * (tex.bpp / 8)));
+	if (ray.orientation == 'N')
+		dist = (int)((1 - ray.pos.y + floor(ray.pos.y)) * tex.img_w);
+	else if (ray.orientation == 'S')
+		dist = (int)((ray.pos.y - floor(ray.pos.y)) * tex.img_w);
+	else if (ray.orientation == 'W')
+		dist = (int)((ray.pos.x - floor(ray.pos.x)) * tex.img_w);
+	else
+		dist = (int)((1 - ray.pos.x + floor(ray.pos.x)) * tex.img_w);
+	return (pixel_get(tex, dist, h));
 }
 
 void	ft_paintray(int	x, t_data *data, float angle, float da)
@@ -60,7 +62,7 @@ void	ft_paintray(int	x, t_data *data, float angle, float da)
 	{
 		h = (int)(tex.img_h * (data->player.h + ray.dist * tan(an)));
 		if (h > 0 && h <= tex.img_h)
-			color = pixel_get(tex, (int)((ray.pos.x - floor(ray.pos.x)) * tex.img_w), h);
+			color = ft_getcolor(tex, ray, h);
 		else if (h > 0 && h > tex.img_h)
 			color = data->textures.ceiling;
 		else

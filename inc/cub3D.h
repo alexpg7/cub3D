@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/25 14:46:16 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/25 15:00:36 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,12 @@ int				ft_init(t_data *data);
 void			ft_screendef(t_mlx *mlx, t_data *data);
 void			ft_init_window(t_mlx *mlx, t_data *data);
 
-// ft_paintscreen
+// ft_paintscreen.c
 void			ft_paintscreen(t_data *data);
+
+//ft_paintscreen_utils.c
+void			pixel_put(t_mlx *mlx, int x, int y, int color);
+unsigned int	pixel_get(t_texture tex, int x, int y);
 
 // ray.c
 float			ft_distance(t_vec2 v1, t_vec2 v2);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sarodrig <sarodrig@student.42barcelona.    +#+  +:+       +#+         #
+#    By: alexp <alexp@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
-#    Updated: 2026/02/22 18:07:15 by sarodrig         ###   ########.fr        #
+#    Updated: 2026/02/25 15:00:55 by alexp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC				= cub3D.c \
 				  parse_map.c \
 				  init.c \
 				  ft_paintscreen.c \
+				  ft_paintscreen_utils.c \
 				  ray.c \
 				  ray_utils.c \
 				  ft_exit.c \
