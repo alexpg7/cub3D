@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 19:14:46 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/25 14:46:16 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_ray
 	t_vec2	pos;
 	t_vec2	dir;
 	float	dist;
+	int		x;// i coordinate in map
+	int		y;// j coordinate in map
+	char	orientation;//N, S, E, W of last wall gone through
 }	t_ray;
 
 typedef struct s_player
@@ -124,7 +127,7 @@ t_ray			ft_startray(t_vec2 start, float dir);
 t_texture		ft_raycast(t_ray *ray, char **map, t_data *data);
 
 // ray_utils.c
-char			get_cell(char **map, t_vec2 pos, t_vec2 dir);
+//char			get_cell(char **map, t_vec2 pos, t_vec2 dir);
 float			ft_div0(float f1, float f2);
 
 // parse_textures.c

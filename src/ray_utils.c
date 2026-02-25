@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:03:34 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 19:03:42 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/25 14:46:08 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	ft_distance(t_vec2 v1, t_vec2 v2)
 	return ((float)hypot(v1.x - v2.x, v1.y - v2.y));
 }
 
-char	get_cell(char **map, t_vec2 pos, t_vec2 dir)//, int hit_vert)
+/*char	get_cell(char **map, t_vec2 pos, t_vec2 dir)//, int hit_vert)
 {
 	int	map_x;
 	int	map_y;
@@ -25,7 +25,7 @@ char	get_cell(char **map, t_vec2 pos, t_vec2 dir)//, int hit_vert)
 	map_x = (int)floor(pos.x + dir.x * 0.00001);
 	map_y = (int)floor(pos.y + dir.y * 0.00001);
 	return (map[map_x][map_y]);
-}
+}*/
 
 float	ft_div0(float f1, float f2)
 {
