@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:46:31 by sarodrig          #+#    #+#             */
-/*   Updated: 2026/02/22 19:19:06 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:22:22 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,101 +43,114 @@ static t_list *ft_locate_and_size_map(t_list *file, int *rows, int *cols)
 
 char **ft_alloc_map(t_list *node, int rows, int cols)
 {
-    char **map;
-    char *content;
-    int i = 0;
-    int j;
+	char **map;
+	char *content;
+	int i = 0;
+	int j;
 
-    map = malloc(sizeof(char *) * (rows + 1));
-    if (!map)
-        return NULL;
+	map = malloc(sizeof(char *) * (rows + 1));
+	if (!map)
+		return NULL;
 
-    while (i < rows)
-    {
-        content = (char *)node->content;
-        map[i] = malloc(sizeof(char) * (cols + 1));
-        if (!map[i])
-            return NULL;
+	while (i < rows)
+	{
+		content = (char *)node->content;
+		map[i] = malloc(sizeof(char) * (cols + 1));
+		if (!map[i])
+			return NULL;
 
-        j = 0;
-        while (j < cols)
-        {
-            if (j < (int)ft_strlen(content) - 1)
-                map[i][j] = content[j];
-            else
-                map[i][j] = ' ';
-            j++;
-        }
-        map[i][j] = '\0';
-        node = node->next;
-        i++;
-    }
-    map[i] = NULL;
-    return map;
+		j = 0;
+		while (j < cols)
+		{
+			if (j < (int)ft_strlen(content) - 1)
+				map[i][j] = content[j];
+			else
+				map[i][j] = ' ';
+			j++;
+		}
+		map[i][j] = '\0';
+		node = node->next;
+		i++;
+	}
+	map[i] = NULL;
+	return map;
 }
 
 int ft_is_valid_char(char c)
 {
-    return (c == '0' || c == '1' || c == 'N' ||
-            c == 'S' || c == 'E' || c == 'W' || c == ' ');
+	return (c == '0' || c == '1' || c == 'N' ||
+			c == 'S' || c == 'E' || c == 'W' || c == ' ');
 }
 
- int ft_validate_map_chars_and_players(t_data *data)
+float	ft_choosedir(char c)
 {
-    int i = 0;
-    int j;
-    int player_count = 0;
+	if (c == 'N')
+		return (PI);
+	else if (c == 'S')
+		return (0);
+	else if (c == 'E')
+		return (PI / 2);
+	return (3 * PI / 2);
+}
 
-    while (data->map[i])
-    {
-        j = 0;
-        while (data->map[i][j])
-        {
-            if (!ft_is_valid_char(data->map[i][j]))
-                return (ft_printerrorreturn("Invalid map character\n", 0));
+int ft_validate_map_chars_and_players(t_data *data)
+{
+	int i = 0;
+	int j;
+	int player_count = 0;
 
-            if (ft_strchr("NSEW", data->map[i][j]))
-                player_count++;
-
-            j++;
-        }
-        i++;
-    }
-    if (player_count != 1)
-        return (ft_printerrorreturn("Invalid number of players\n", 0));
-
-    return (1);
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (!ft_is_valid_char(data->map[i][j]))
+				return (ft_printerrorreturn("Invalid map character\n", 0));
+			if (ft_strchr("NSEW", data->map[i][j]))
+			{
+				data->player.look_dir = ft_choosedir(data->map[i][j]);
+				data->player.pos.x = i + 0.5;
+				data->player.pos.y = j + 0.5;
+				player_count++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (player_count != 1)
+		return (ft_printerrorreturn("Invalid number of players\n", 0));
+	return (1);
 }
 
 int ft_is_closed(t_data *data)
 {
-    int i = 0;
-    int j;
+	int i = 0;
+	int j;
 
-    while (data->map[i])
-    {
-        j = 0;
-        while (data->map[i][j])
-        {
-            if (data->map[i][j] == '0' ||
-                ft_strchr("NSEW", data->map[i][j]))
-            {
-                if (i == 0 || j == 0 ||
-                    !data->map[i + 1] ||
-                    data->map[i][j + 1] == '\0')
-                    return (0);
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == '0' ||
+				ft_strchr("NSEW", data->map[i][j]))
+			{
+				if (i == 0 || j == 0 ||
+					!data->map[i + 1] ||
+					data->map[i][j + 1] == '\0')
+					return (ft_printerrorreturn("Map is not closed\n", 0));
 
-                if (data->map[i - 1][j] == ' ' ||
-                    data->map[i + 1][j] == ' ' ||
-                    data->map[i][j - 1] == ' ' ||
-                    data->map[i][j + 1] == ' ')
-                    return (0);
-            }
-            j++;
-        }
-        i++;
-    }
-    return (1);
+				if (data->map[i - 1][j] == ' ' ||
+					data->map[i + 1][j] == ' ' ||
+					data->map[i][j - 1] == ' ' ||
+					data->map[i][j + 1] == ' ')
+					return (ft_printerrorreturn("Map is not closed\n", 0));
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	ft_checkmap(int fd, t_data *data)

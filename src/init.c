@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:06:27 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:17:32 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_fillmap(t_data *data)
 	data->player.pos.x = 2.5;
 	data->player.pos.y = 9.5;
 	data->player.look_dir = 3 * PI / 2;
-	data->player.h = 0.5;
-	data->player.fov = 70.0 * PI / 180.0;
 }
 
 void	ft_init_window(t_mlx *mlx, t_data *data)
@@ -61,8 +59,9 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 		perror("mlx address get");
 		ft_exit(data, 1);
 	}
-	ft_fillmap(data); //this one is provisional, while waiting to have the map parsing
-	ft_paintscreen(data);
+	//ft_fillmap(data); //this one is provisional, while waiting to have the map parsing
+	for (int i = 0; i < 7; i++)
+		printf("%s\n", data->map[i]);
 	///mlx_mouse_hook(mlx->win, mouse_hook, data);
 	mlx_hook(mlx->win, 6, 1L<<6, &ft_movemouse, data);
 	//mlx_key_hook(mlx->win, key_hook, data);
@@ -89,5 +88,7 @@ int	ft_init(t_data *data)
 	data->player.d_key = '0';
 	data->player.left_key = '0';
 	data->player.right_key = '0';
+	data->player.h = 0.5;
+	data->player.fov = 70.0 * PI / 180.0;
 	return (0);
 }
