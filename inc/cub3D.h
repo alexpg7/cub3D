@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/25 15:00:36 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/27 18:46:25 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,16 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <math.h>
+#include <sys/time.h>
 
-#define PI 3.1415926535
+# define PI 3.1415926535
+# define KEYW 119
+# define KEYA 97
+# define KEYS 115
+# define KEYD 100
+# define KEYLEFT 65361
+# define KEYRIGHT 65363
+# define ESC 65307
 
 //list of textures
 
@@ -80,15 +88,23 @@ typedef struct s_player
 	float	look_dir;
 	float	h;
 	float	fov;
+	char	w_key;
+	char	a_key;
+	char	s_key;
+	char	d_key;
+	char	left_key;
+	char	right_key;
+	t_vec2	vel;
 }	t_player;
 
 //struct where all data goes ("global variable")
 typedef struct s_data
 {
-	t_mlx		mlx;
-	t_player	player;
-	t_textures	textures;
-	char		**map;
+	t_mlx			mlx;
+	t_player		player;
+	t_textures		textures;
+	struct timeval	last_time;
+	char			**map;
 }	t_data;
 
 // cub3d.c functions
@@ -112,6 +128,11 @@ int				ft_exit(t_data *data, int ret);
 
 // hooks.c
 int				ft_hookexit(t_data *data);
+//int				key_hook(int keycode, t_data *data);
+int				key_press(int keycode, t_data *data);
+int				key_release(int keycode, t_data *data);
+int				ft_movemouse(int x, int y, t_data *data);
+int				game_loop(t_data *data);
 
 // init.c
 int				ft_init(t_data *data);
