@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:38:51 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:51:37 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,14 @@ int				ft_exit(t_data *data, int ret);
 
 // hooks.c
 int				ft_hookexit(t_data *data);
-//int				key_hook(int keycode, t_data *data);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
 int				ft_movemouse(int x, int y, t_data *data);
+
+// hooks_utils.c
+t_vec2			ft_rotate(t_vec2 vec, float angle);
 int				game_loop(t_data *data);
+t_vec2			ft_changepos(t_vec2 vec, float angle, t_data *data);
 
 // init.c
 int				ft_init(t_data *data);

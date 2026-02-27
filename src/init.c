@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:40:50 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:45:39 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	ft_screendef(t_mlx *mlx, t_data *data)
 	mlx->x = 1000;
 	mlx->y = 500;
 	data->mlx = data->mlx;
-	//more things?
+	data->player.h = 0.5;
+	data->player.fov = 70.0 * PI / 180.0;
+	data->player.vel.x = 0;
+	data->player.vel.y = 0;
 }
 
 /*void	ft_fillmap(t_data *data)
@@ -59,12 +62,9 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 		perror("mlx address get");
 		ft_exit(data, 1);
 	}
-	//ft_fillmap(data); //this one is provisional, while waiting to have the map parsing
 	for (int i = 0; i < 7; i++)
 		printf("%s\n", data->map[i]);
-	///mlx_mouse_hook(mlx->win, mouse_hook, data);
 	mlx_hook(mlx->win, 6, 1L<<6, &ft_movemouse, data);
-	//mlx_key_hook(mlx->win, key_hook, data);
 	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
 	mlx_hook(mlx->win, 2, 1L<<0, &key_press, data);
 	mlx_hook(mlx->win, 3, 1L<<1, &key_release, data);
@@ -98,10 +98,6 @@ int	ft_init(t_data *data)
 	data->player.d_key = '0';
 	data->player.left_key = '0';
 	data->player.right_key = '0';
-	data->player.h = 0.5;
-	data->player.fov = 70.0 * PI / 180.0;
-	data->player.vel.x = 0;
-	data->player.vel.y = 0;
 	data->mlx.mlx = NULL;
 	return (0);
 }

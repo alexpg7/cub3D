@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexp <alexp@student.42.fr>                +#+  +:+       +#+         #
+#    By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
-#    Updated: 2026/02/25 15:00:55 by alexp            ###   ########.fr        #
+#    Updated: 2026/02/27 19:51:52 by alpascua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRC				= cub3D.c \
 				  ft_exit.c \
 				  ft_isclosed.c \
 				  hooks.c \
+				  hooks_utils.c \
 				  textures.c \
 				  parse_textures.c
 
