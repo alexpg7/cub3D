@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:17:32 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:40:50 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_screendef(t_mlx *mlx, t_data *data)
 	//more things?
 }
 
-void	ft_fillmap(t_data *data)
+/*void	ft_fillmap(t_data *data)
 {
 	data->map = (char **)malloc(sizeof(char *) * 8);
 	data->map[0] = ft_strdup("11111111111");
@@ -34,7 +34,7 @@ void	ft_fillmap(t_data *data)
 	data->player.pos.x = 2.5;
 	data->player.pos.y = 9.5;
 	data->player.look_dir = 3 * PI / 2;
-}
+}*/
 
 void	ft_init_window(t_mlx *mlx, t_data *data)
 {
@@ -71,9 +71,19 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 	mlx_loop_hook(mlx->mlx, game_loop, data);
 	mlx_loop(mlx->mlx);
 }
+void	ft_inittex(t_texture *tex)
+{
+	tex->path = NULL;
+	tex->data = NULL;
+	tex->img = NULL;
+}
 
 int	ft_init(t_data *data)
 {
+	ft_inittex(&data->textures.east);
+	ft_inittex(&data->textures.north);
+	ft_inittex(&data->textures.south);
+	ft_inittex(&data->textures.west);
 	data->textures.east.path = NULL;
 	data->textures.west.path = NULL;
 	data->textures.north.path = NULL;
@@ -90,5 +100,8 @@ int	ft_init(t_data *data)
 	data->player.right_key = '0';
 	data->player.h = 0.5;
 	data->player.fov = 70.0 * PI / 180.0;
+	data->player.vel.x = 0;
+	data->player.vel.y = 0;
+	data->mlx.mlx = NULL;
 	return (0);
 }

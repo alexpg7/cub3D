@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:14:20 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 16:04:22 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/27 19:37:07 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,25 @@ void	ft_close_mlx(t_mlx *mlx)
 		free(mlx->mlx);
 	}
 }
-
-void	ft_freetex(t_textures tex)
+void	ft_freetexture(t_texture tex, t_mlx mlx)
 {
-	if (tex.north.path)
-		free(tex.north.path);
-	if (tex.south.path)
-		free(tex.south.path);
-	if (tex.east.path)
-		free(tex.east.path);
-	if (tex.west.path)
-		free(tex.west.path);
+	if (tex.path)
+		free(tex.path);
+	if (tex.img)
+		mlx_destroy_image(mlx.mlx, tex.img);
+}
+
+void	ft_freetex(t_textures tex, t_mlx mlx)
+{
+	ft_freetexture(tex.north, mlx);
+	ft_freetexture(tex.south, mlx);
+	ft_freetexture(tex.west, mlx);
+	ft_freetexture(tex.east, mlx);
 }
 
 int	ft_exit(t_data *data, int ret)
 {
-	ft_freetex(data->textures);
+	ft_freetex(data->textures, data->mlx);
 	ft_close_mlx(&(data->mlx));
 	if (data->map)
 		ft_freestrarr(&(data->map), 0);
