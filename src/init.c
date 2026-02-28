@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:45:39 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/28 16:49:43 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 		perror("mlx address get");
 		ft_exit(data, 1);
 	}
-	for (int i = 0; i < 7; i++)
-		printf("%s\n", data->map[i]);
 	mlx_hook(mlx->win, 6, 1L<<6, &ft_movemouse, data);
 	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
 	mlx_hook(mlx->win, 2, 1L<<0, &key_press, data);

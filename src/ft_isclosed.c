@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:14:03 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/18 19:04:00 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/28 16:49:18 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	ft_checkaround(char **str, int i, int j)
 {
+	//(check with norm) DELETE THIS FILE????
 	if (str[i - 1][j] == ' ')
 		return (0);
 	if (str[i + 1][j] == ' ')
