@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/28 16:49:43 by alexp            ###   ########.fr       */
+/*   Updated: 2026/02/28 16:58:26 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_screendef(t_mlx *mlx, t_data *data)
 	data->player.fov = 70.0 * PI / 180.0;
 	data->player.vel.x = 0;
 	data->player.vel.y = 0;
+	data->player.look_vel = 0.0;
 }
 
 /*void	ft_fillmap(t_data *data)

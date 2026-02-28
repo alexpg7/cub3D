@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:50:35 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:51:41 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/28 16:58:23 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	game_loop(t_data *data)
 		data->player.pos.y = fpos.y;
 	}
 	data->last_time = current_time;
+	data->player.look_dir += data->player.look_vel * dt * 1.0;
 	ft_paintscreen(data);
 	return (0);
 }

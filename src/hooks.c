@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:15:00 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 19:50:25 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/02/28 16:58:22 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_updatevel(t_player *player)
 		player->vel.x /= norm;
 		player->vel.y /= norm;
 	}
+	player->look_vel = 1.0 * (player->left_key == '1') \
+		- 1.0 * (player->right_key == '1');
 }
 
 int	key_press(int keycode, t_data *data)
