@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/27 18:59:17 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 12:57:21 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_paintraycolumn(int	x, t_data *data, float angle, float da)
 		if (h > 0 && h <= tex.img_h)
 			color = ft_getcolor(tex, ray, h);
 		else if (h > 0 && h > tex.img_h)
-			color = data->textures.ceiling;
-		else
 			color = data->textures.floor;
+		else
+			color = data->textures.ceiling;
 		pixel_put(&data->mlx, x, y, color);
 		y++;
 		an = an + da;
