@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:04:36 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:41:43 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:43:39 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int	ft_gettextures(t_list *file, t_data *data)
 	int		count;
 
 	count = 0;
-	while (file->content && count < 6)
+	while (file && count < 6)
 	{
+		if (!file->content)
+			break ;
 		str = file->content;
 		while (ft_isspace(*str))
 			str++;
@@ -63,7 +65,7 @@ int	ft_gettextures(t_list *file, t_data *data)
 		file = file->next;
 	}
 	if (count != 6)
-		return (0);
+		return (ft_perror("Missing textures/colors information", 0));
 	return (1);
 }
 
