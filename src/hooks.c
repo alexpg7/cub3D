@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:15:00 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 12:50:16 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 14:09:25 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int	ft_movemouse(int x, int y, t_data *data)
 {
-	int	dx;
+	int		dx;
+	t_mlx	*mlx;
 
+	mlx = &data->mlx;
 	y = y + 1 - 1;
-	if (x == data->mlx.x / 2)
+	if (x == mlx->x / 2)
 		return (0);
-	dx = x - data->mlx.x / 2;
+	dx = x - mlx->x / 2;
 	data->player.look_dir -= (float)dx * 0.0005;
-	mlx_mouse_move(data->mlx.mlx, data->mlx.win, data->mlx.x / 2, data->mlx.y / 2);
+	mlx_mouse_move(mlx->mlx, mlx->win, mlx->x / 2, mlx->y / 2);
 	return (0);
 }
 
@@ -51,23 +53,23 @@ void	ft_updatevel(t_player *player)
 {
 	float	norm;
 	t_vec2	vec0;
+	float	lv;
+	float	hv;
 
 	vec0.x = 0.0;
 	vec0.y = 0.0;
-	player->vel.x = 1.0 * (player->w_key == '1') \
-		- 1.0 * (player->s_key == '1');
-	player->vel.y = 1.0 * (player->a_key == '1') \
-		- 1.0 * (player->d_key == '1');
+	player->vel.x = 1 * (player->w_key == '1') - 1 * (player->s_key == '1');
+	player->vel.y = 1 * (player->a_key == '1') - 1 * (player->d_key == '1');
 	norm = ft_distance(player->vel, vec0);
 	if (norm != 0)
 	{
 		player->vel.x /= norm;
 		player->vel.y /= norm;
 	}
-	player->look_vel = 1.0 * (player->left_key == '1') \
-		- 1.0 * (player->right_key == '1');
-	player->h_vel = 1.0 * (player->ctrl_key == '1') \
-		- 1.0 * (player->ctrl_key == '0');
+	lv = 1 * (player->left_key == '1') - 1 * (player->right_key == '1');
+	hv = 1 * (player->ctrl_key == '1') - 1 * (player->ctrl_key == '0');
+	player->look_vel = lv;
+	player->h_vel = hv;
 }
 
 int	key_press(int keycode, t_data *data)

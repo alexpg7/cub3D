@@ -6,13 +6,13 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:46:31 by sarodrig          #+#    #+#             */
-/*   Updated: 2026/03/01 13:41:30 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 14:04:33 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static t_list *ft_locate_and_size_map(t_list *file, int *rows, int *cols)
+static t_list	*ft_locate_and_size_map(t_list *file, int *rows, int *cols)
 {
 	int		count;
 	int		len;
@@ -23,16 +23,16 @@ static t_list *ft_locate_and_size_map(t_list *file, int *rows, int *cols)
 	count = 0;
 	while (file && count < 6)
 	{
-        if (ft_strlen((char *)file->content) > 1)
+		if (ft_strlen((char *)file->content) > 1)
 			count++;
 		file = file->next;
 	}
-    while (file && ft_strlen((char *)file->content) <= 1)
+	while (file && ft_strlen((char *)file->content) <= 1)
 		file = file->next;
 	map_start = file;
 	while (file)
 	{
-        len = ft_strlen((char *)file->content);
+		len = ft_strlen((char *)file->content);
 		if (len > *cols)
 			*cols = len;
 		(*rows)++;
@@ -41,24 +41,23 @@ static t_list *ft_locate_and_size_map(t_list *file, int *rows, int *cols)
 	return (map_start);
 }
 
-char **ft_alloc_map(t_list *node, int rows, int cols)
+char	**ft_alloc_map(t_list *node, int rows, int cols)
 {
-	char **map;
-	char *content;
-	int i = 0;
-	int j;
+	char	**map;
+	char	*content;
+	int		i;
+	int		j;
 
+	i = 0;
 	map = malloc(sizeof(char *) * (rows + 1));
 	if (!map)
-		return NULL;
-
+		return (NULL);
 	while (i < rows)
 	{
 		content = (char *)node->content;
 		map[i] = malloc(sizeof(char) * (cols + 1));
 		if (!map[i])
-			return NULL;
-
+			return (NULL);
 		j = 0;
 		while (j < cols)
 		{
@@ -72,11 +71,11 @@ char **ft_alloc_map(t_list *node, int rows, int cols)
 		node = node->next;
 		i++;
 	}
-	map[i] = NULL;
-	return map;
+	map[i] = (NULL);
+	return (map);
 }
 
-int ft_is_valid_char(char c)
+int	ft_is_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' ||
 			c == 'S' || c == 'E' || c == 'W' || c == ' ');
@@ -93,7 +92,7 @@ float	ft_choosedir(char c)
 	return (3 * PI / 2);
 }
 
-int ft_validate_map_chars_and_players(t_data *data)
+int	ft_validate_map_chars_and_players(t_data *data)
 {
 	int i = 0;
 	int j;
@@ -122,11 +121,12 @@ int ft_validate_map_chars_and_players(t_data *data)
 	return (1);
 }
 
-int ft_is_closed(t_data *data)
+int	ft_is_closed(t_data *data)
 {
-	int i = 0;
+	int i;
 	int j;
 
+	i = 0;
 	while (data->map[i])
 	{
 		j = 0;
@@ -139,7 +139,6 @@ int ft_is_closed(t_data *data)
 					!data->map[i + 1] ||
 					data->map[i][j + 1] == '\0')
 					return (ft_perror("Map is not closed", 0));
-
 				if (data->map[i - 1][j] == ' ' ||
 					data->map[i + 1][j] == ' ' ||
 					data->map[i][j - 1] == ' ' ||
