@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:46:31 by sarodrig          #+#    #+#             */
-/*   Updated: 2026/03/01 13:06:25 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:41:30 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int ft_validate_map_chars_and_players(t_data *data)
 		while (data->map[i][j])
 		{
 			if (!ft_is_valid_char(data->map[i][j]))
-				return (ft_perror("Invalid map character\n", 0));
+				return (ft_perror("Invalid map character", 0));
 			if (ft_strchr("NSEW", data->map[i][j]))
 			{
 				data->player.look_dir = ft_choosedir(data->map[i][j]);
@@ -118,7 +118,7 @@ int ft_validate_map_chars_and_players(t_data *data)
 		i++;
 	}
 	if (player_count != 1)
-		return (ft_perror("Invalid number of players\n", 0));
+		return (ft_perror("Invalid number of players", 0));
 	return (1);
 }
 
@@ -138,13 +138,13 @@ int ft_is_closed(t_data *data)
 				if (i == 0 || j == 0 ||
 					!data->map[i + 1] ||
 					data->map[i][j + 1] == '\0')
-					return (ft_perror("Map is not closed\n", 0));
+					return (ft_perror("Map is not closed", 0));
 
 				if (data->map[i - 1][j] == ' ' ||
 					data->map[i + 1][j] == ' ' ||
 					data->map[i][j - 1] == ' ' ||
 					data->map[i][j + 1] == ' ')
-					return (ft_perror("Map is not closed\n", 0));
+					return (ft_perror("Map is not closed", 0));
 			}
 			j++;
 		}
@@ -171,13 +171,13 @@ int	ft_checkmap(int fd, t_data *data)
 	if (!map_start || rows == 0)
 	{
 		ft_lstclear(&file, &free);
-		return (ft_perror("Map missing\n", 0));
+		return (ft_perror("Map missing", 0));
 	}
 	data->map = ft_alloc_map(map_start, rows, cols);
 	if (!data->map)
 	{
 		ft_lstclear(&file, &free);
-		return (ft_perror("Malloc error\n", 0));
+		return (ft_perror("Malloc error", 0));
 	}
 	if (!ft_validate_map_chars_and_players(data) || !ft_is_closed(data))
 	{

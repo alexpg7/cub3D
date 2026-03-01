@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:17:12 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:06:22 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:41:35 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_checkrgb(t_data *data, char *str, int type)
 	while (count < 3)
 	{
 		if (!ft_isrgb(str))
-			return (ft_perror("Color in line is not RGB\n", 2));
+			return (ft_perror("Color in line is not RGB", 2));
 		while (ft_isdigit(*str))
 			str++;
 		while (ft_isspace(*str))
