@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 12:49:49 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:08:10 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,16 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 {
 	mlx->mlx = mlx_init();
 	if (!(mlx->mlx))
-	{
-		perror("mlx init");
-		ft_exit(data, 1);
-	}
+		ft_exit(data, ft_perror("mlx init failed", 1));
 	ft_loadtextures(data);
 	mlx->win = mlx_new_window(mlx->mlx, mlx->x, mlx->y, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->x, mlx->y);
 	if (!(mlx->win) || !(mlx->img))
-	{
-		perror("mlx error");
-		ft_exit(data, 1);
-	}
+		ft_exit(data, ft_perror("mlx window failed", 1));
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
 	if (!(mlx->addr) || !(mlx->bits_per_pixel) || !(mlx->line_length))
-	{
-		perror("mlx address get");
-		ft_exit(data, 1);
-	}
+		ft_exit(data, ft_perror("mlx get adress failed", 1));
 	mlx_hook(mlx->win, 6, 1L<<6, &ft_movemouse, data);
 	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
 	mlx_hook(mlx->win, 2, 1L<<0, &key_press, data);

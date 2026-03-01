@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:17:12 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:18:10 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:06:22 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	ft_isrgb(char *str)
 {
 	int	num;
 
-	if (ft_strlen(str) < 3)
-		return (0);
-	if (!(ft_isdigit(str[0]) && ft_isdigit(str[1]) && ft_isdigit(str[2])))
+	if (!ft_isdigit(str[0]))
 		return (0);
 	num = ft_atoi(str);
 	if (num < 0 || num >= 256)
@@ -77,7 +75,7 @@ int	ft_checkrgb(t_data *data, char *str, int type)
 	while (count < 3)
 	{
 		if (!ft_isrgb(str))
-			return (ft_printerrorreturn("Color in line is not RGB\n", 2));
+			return (ft_perror("Color in line is not RGB\n", 2));
 		while (ft_isdigit(*str))
 			str++;
 		while (ft_isspace(*str))

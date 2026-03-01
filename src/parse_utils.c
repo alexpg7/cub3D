@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:18:19 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 11:18:39 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:06:20 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ char	*ft_filename(char *str)
 	return (ptr);
 }
 
-int	ft_printerrorreturn(char *str, int ret)
+int	ft_perror(char *str, int ret)
 {
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
 	return (ret);
 }

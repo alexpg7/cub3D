@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 12:45:18 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:06:25 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int				ft_readline(char *str, t_data *data, int type, char *origstring);
 int				ft_classify(char *str);
 
 // parse_utils.c
-int				ft_printerrorreturn(char *str, int ret);
+int				ft_perror(char *str, int ret);
 int				ft_xpmextension(char *filename);
 char			*ft_filename(char *str);
 

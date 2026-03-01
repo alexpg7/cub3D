@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:04:36 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 18:36:55 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:06:21 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	ft_checktexture(t_data *data, char *str, int type)
 		str++;
 	filename = ft_filename(str);
 	if (!filename)
-		return (ft_printerrorreturn("Malloc error\n", 1));
+		return (ft_perror("Malloc error\n", 1));
 	if (!ft_xpmextension(filename))
 		return (1);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error reading \"", 2);
+		ft_putstr_fd("Error\nError reading \"", 2);
 		ft_putstr_fd(filename, 2);
 		ft_putstr_fd("\"\n", 2);
 		free(filename);
