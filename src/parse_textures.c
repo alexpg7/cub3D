@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:04:36 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:43:39 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:47:54 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_assigntype(int type, char *str, t_textures *tex)
 
 int	ft_classify(char *str)
 {
-
 	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]))
 		return (1);
 	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]))

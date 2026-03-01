@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:37:54 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:59:53 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,6 @@ int				ft_checkrgb(t_data *data, char *str, int type);
 unsigned int	ft_parse_rgb(char *str);
 
 // textures.c
-void			ft_loadtex(t_texture *tex, void *mlx);
 int				ft_loadtextures(t_data *data);
 
 #endif

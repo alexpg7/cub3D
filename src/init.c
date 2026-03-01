@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:08:10 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:56:09 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 	mlx->mlx = mlx_init();
 	if (!(mlx->mlx))
 		ft_exit(data, ft_perror("mlx init failed", 1));
-	ft_loadtextures(data);
+	if (!ft_loadtextures(data))
+		ft_exit(data, ft_perror("Loading textures failed", 1));
 	mlx->win = mlx_new_window(mlx->mlx, mlx->x, mlx->y, "cub3D");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->x, mlx->y);
 	if (!(mlx->win) || !(mlx->img))
