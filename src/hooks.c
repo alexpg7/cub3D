@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:15:00 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/28 16:58:22 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/01 12:50:16 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	ft_updatevel(t_player *player)
 	}
 	player->look_vel = 1.0 * (player->left_key == '1') \
 		- 1.0 * (player->right_key == '1');
+	player->h_vel = 1.0 * (player->ctrl_key == '1') \
+		- 1.0 * (player->ctrl_key == '0');
 }
 
 int	key_press(int keycode, t_data *data)
@@ -87,6 +89,10 @@ int	key_press(int keycode, t_data *data)
 		player->left_key = '1';
 	else if (keycode == KEYRIGHT)
 		player->right_key = '1';
+	else if (keycode == KEYSHIFT)
+		player->shift_key = '1';
+	else if (keycode == KEYCTRL)
+		player->ctrl_key = '1';
 	ft_updatevel(player);
 	return (0);
 }
@@ -108,6 +114,10 @@ int	key_release(int keycode, t_data *data)
 		data->player.left_key = '0';
 	else if (keycode == KEYRIGHT)
 		data->player.right_key = '0';
+	else if (keycode == KEYSHIFT)
+		player->shift_key = '0';
+	else if (keycode == KEYCTRL)
+		player->ctrl_key = '0';
 	ft_updatevel(player);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/28 16:58:26 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/01 12:49:49 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_screendef(t_mlx *mlx, t_data *data)
 {
-	mlx->x = 1000;
-	mlx->y = 500;
+	mlx->x = 1500;
+	mlx->y = 800;
 	data->mlx = data->mlx;
 	data->player.h = 0.5;
 	data->player.fov = 70.0 * PI / 180.0;
 	data->player.vel.x = 0;
 	data->player.vel.y = 0;
 	data->player.look_vel = 0.0;
+	data->player.h_vel = 0.0;
 }
 
 /*void	ft_fillmap(t_data *data)
@@ -97,6 +98,8 @@ int	ft_init(t_data *data)
 	data->player.d_key = '0';
 	data->player.left_key = '0';
 	data->player.right_key = '0';
+	data->player.shift_key = '0';
+	data->player.ctrl_key = '0';
 	data->mlx.mlx = NULL;
 	return (0);
 }

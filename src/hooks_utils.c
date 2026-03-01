@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:50:35 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/28 16:58:23 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/01 12:51:22 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ t_vec2	ft_rotate(t_vec2 vec, float angle)
 	return (result);
 }
 
+void	ft_updateheight(t_player *player, float dt)
+{
+	float	fh;
+
+	fh = player->h + player->h_vel * dt * 1.5;
+	if (fh > 0.8 || fh < 0.5)
+		return ;
+	player->h = fh;
+}
+
 int	game_loop(t_data *data)
 {
 	struct timeval	current_time;
@@ -36,8 +46,10 @@ int	game_loop(t_data *data)
 	dt = (current_time.tv_sec - data->last_time.tv_sec) \
 		+(current_time.tv_usec - data->last_time.tv_usec) / 1000000.0f;
 	vel = ft_rotate(data->player.vel, data->player.look_dir);
-	fpos.x = data->player.pos.x + 2 * vel.x * dt;
-	fpos.y = data->player.pos.y + 2 * vel.y * dt;
+	fpos.x = data->player.pos.x + 2 * vel.x * dt \
+		* (1 + 1 * (data->player.shift_key == '1'));
+	fpos.y = data->player.pos.y + 2 * vel.y * dt \
+		* (1 + 1 * (data->player.shift_key == '1'));
 	if (data->map[(int)floor(fpos.x)][(int)floor(fpos.y)] != '1')
 	{
 		data->player.pos.x = fpos.x;
@@ -45,6 +57,7 @@ int	game_loop(t_data *data)
 	}
 	data->last_time = current_time;
 	data->player.look_dir += data->player.look_vel * dt * 1.0;
+	ft_updateheight(&data->player, dt);
 	ft_paintscreen(data);
 	return (0);
 }

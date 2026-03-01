@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/28 16:58:29 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/01 12:45:18 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define KEYD 100
 # define KEYLEFT 65361
 # define KEYRIGHT 65363
+# define KEYSHIFT 65505
+# define KEYCTRL 65507
 # define ESC 65307
 
 //list of textures
@@ -94,8 +96,11 @@ typedef struct s_player
 	char	d_key;
 	char	left_key;
 	char	right_key;
+	char	shift_key;
+	char	ctrl_key;
 	t_vec2	vel;
 	float	look_vel;
+	float	h_vel;
 }	t_player;
 
 //struct where all data goes ("global variable")
