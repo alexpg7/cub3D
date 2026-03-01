@@ -4,9 +4,6 @@ cub3D
 #vscode
 *.vscode
 
-#minilibx
-*test
-
 # Prerequisites
 *.d
 
