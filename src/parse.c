@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:08:04 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/22 19:19:44 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:38:12 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_parsefile(t_list **list, int fd)
 	return (1);
 }
 
-int	ft_readline(char *str, t_data *data, int type, char *origstring)
+int	ft_readline(char *str, t_data *data, int type, char *o_string)
 {
 	if (type != 0)
 	{
@@ -58,7 +58,7 @@ int	ft_readline(char *str, t_data *data, int type, char *origstring)
 			return (0);
 		}
 		ft_putstr_fd("Error reading line \"", 2);
-		write(2, origstring, ft_strlen(origstring) - 1);
+		write(2, o_string, ft_strlen(o_string) - 1);
 		ft_putstr_fd("\", it does not match any instruction ", 2);
 		ft_putstr_fd("(NO, SO, EA, WE, F, C)\n", 2);
 		return (0);

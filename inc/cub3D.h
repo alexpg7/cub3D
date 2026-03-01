@@ -6,17 +6,19 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:16:50 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:37:54 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/Libft/libft.h"
-#include "../lib/minilibx-linux/mlx.h"
-#include "../lib/minilibx-linux/mlx_int.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <math.h>
-#include <sys/time.h>
+#ifndef CUB3D_H
+# define CUB3D_H
+# include "../lib/Libft/libft.h"
+# include "../lib/minilibx-linux/mlx.h"
+# include "../lib/minilibx-linux/mlx_int.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <math.h>
+# include <sys/time.h>
 
 # define PI 3.1415926535
 # define KEYW 119
@@ -121,7 +123,7 @@ int				ft_parsefile(t_list **list, int fd);
 int				ft_checkmap(int fd, t_data *data);
 int				ft_checkargs(int narg, char **argv, t_data *data);
 void			ft_assigntype(int type, char *str, t_textures *tex);
-int				ft_readline(char *str, t_data *data, int type, char *origstring);
+int				ft_readline(char *str, t_data *data, int type, char *o_string);
 int				ft_classify(char *str);
 
 // parse_utils.c
@@ -178,3 +180,5 @@ unsigned int	ft_parse_rgb(char *str);
 // textures.c
 void			ft_loadtex(t_texture *tex, void *mlx);
 int				ft_loadtextures(t_data *data);
+
+#endif
