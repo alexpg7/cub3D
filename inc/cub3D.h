@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:06:25 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 13:16:50 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int				ft_classify(char *str);
 int				ft_perror(char *str, int ret);
 int				ft_xpmextension(char *filename);
 char			*ft_filename(char *str);
+int				ft_isspace_n(char c);
 
 // ft_exit.c
 int				ft_exit(t_data *data, int ret);
