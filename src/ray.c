@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:22:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/02/25 14:58:38 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/01 14:41:47 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	ft_nearestwall(t_ray *ray, char **map)
 	float	dy;
 	float	t;
 
-	pos.x = ray->pos.x;// + ray->dir.x * 0.000001;
-	pos.y = ray->pos.y;// + ray->dir.y * 0.000001;
+	pos.x = ray->pos.x;
+	pos.y = ray->pos.y;
 	dx = floor(pos.x + ray->dir.x * 0.000001) + 1 * (ray->dir.x > 0);
 	dy = floor(pos.y + ray->dir.y * 0.000001) + 1 * (ray->dir.y > 0);
 	dx = ft_div0(fabs((dx - pos.x)), fabs(ray->dir.x));
@@ -74,7 +74,7 @@ t_texture	ft_raycast(t_ray *ray, char **map, t_data *data)
 	char		hit;
 
 	hit = map[(int)floor(ray->pos.x)][(int)floor(ray->pos.y)];
-	while (hit != '1')//+ some conditions for safety (like count < dimensions of the map)
+	while (hit != '1')
 	{
 		hit = ft_nearestwall(ray, map);
 	}

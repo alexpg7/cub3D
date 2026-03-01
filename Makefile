@@ -6,7 +6,7 @@
 #    By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
-#    Updated: 2026/02/27 19:51:52 by alpascua         ###   ########.fr        #
+#    Updated: 2026/03/01 15:39:46 by alpascua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,13 +49,13 @@ SRC				= cub3D.c \
 				  parse_utils.c \
 				  parse_rgb.c \
 				  parse_map.c \
+				  parse_map_utils.c \
 				  init.c \
 				  ft_paintscreen.c \
 				  ft_paintscreen_utils.c \
 				  ray.c \
 				  ray_utils.c \
 				  ft_exit.c \
-				  ft_isclosed.c \
 				  hooks.c \
 				  hooks_utils.c \
 				  textures.c \

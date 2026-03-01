@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 12:57:21 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 14:58:03 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,33 @@ unsigned int	ft_getcolor(t_texture tex, t_ray ray, float h)
 	return (pixel_get(tex, dist, h));
 }
 
-void	ft_paintraycolumn(int	x, t_data *data, float angle, float da)
+int	ft_choosecolor(float h, t_texture tex, t_ray ray, t_data *data)
+{
+	if (h > 0 && h <= tex.img_h)
+		return (ft_getcolor(tex, ray, h));
+	else if (h > 0 && h > tex.img_h)
+		return (data->textures.floor);
+	else
+		return (data->textures.ceiling);
+}
+
+void	ft_paintraycolumn(int x, t_data *data, float angle, float da)
 {
 	t_ray		ray;
-	int			color;
 	int			y;
 	float		an;
 	int			h;
 	t_texture	tex;
 
-	//printf("%f\n", data->player.pos.x);
 	ray = ft_startray(data->player.pos, angle);
 	tex = ft_raycast(&ray, data->map, data);
 	y = 0;
-	an = 0 - data->mlx.y / 2 * da;
+	an = -data->mlx.y / 2 * da;
 	while (y < data->mlx.y)
 	{
-		h = (int)(tex.img_h * (data->player.h + ray.dist * tan(an) * cos(angle - data->player.look_dir)));
-		if (h > 0 && h <= tex.img_h)
-			color = ft_getcolor(tex, ray, h);
-		else if (h > 0 && h > tex.img_h)
-			color = data->textures.floor;
-		else
-			color = data->textures.ceiling;
-		pixel_put(&data->mlx, x, y, color);
+		h = (int)(tex.img_h * (data->player.h + ray.dist
+					* tan(an) * cos(angle - data->player.look_dir)));
+		pixel_put(&data->mlx, x, y, ft_choosecolor(h, tex, ray, data));
 		y++;
 		an = an + da;
 	}

@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:59:53 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 15:40:14 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,22 @@ int				ft_closeerror(int fd, char *str);
 
 // parse.c functions
 int				ft_parsefile(t_list **list, int fd);
-int				ft_checkmap(int fd, t_data *data);
 int				ft_checkargs(int narg, char **argv, t_data *data);
 void			ft_assigntype(int type, char *str, t_textures *tex);
 int				ft_readline(char *str, t_data *data, int type, char *o_string);
 int				ft_classify(char *str);
+
+// parse_map.c
+int				ft_checkmap(int fd, t_data *data);
+int				ft_validate_map_chars_and_players(t_data *data);
+int				ft_is_closed(t_data *data);
+
+// parse_map_utils.c
+int				ft_validate_map(t_data *data, t_list *file);
+int				ft_aroundmap(char **map, int i, int j);
+float			ft_choosedir(char c);
+void			ft_setdata(t_data *data, int *count, int i, int j);
+void			ft_alloc_cols(char *content, char **map, int i, int cols);
 
 // parse_utils.c
 int				ft_perror(char *str, int ret);

@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:50:35 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 12:51:22 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 14:38:22 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_vec2	ft_rotate(t_vec2 vec, float angle)
 {
-	t_vec2 result;
-	float cos_a;
-	float sin_a;
+	t_vec2	result;
+	float	cos_a;
+	float	sin_a;
 
 	cos_a = cos(angle);
 	sin_a = sin(angle);
@@ -43,12 +43,12 @@ int	game_loop(t_data *data)
 	float			dt;
 
 	gettimeofday(&current_time, NULL);
-	dt = (current_time.tv_sec - data->last_time.tv_sec) \
+	dt = (current_time.tv_sec - data->last_time.tv_sec)
 		+(current_time.tv_usec - data->last_time.tv_usec) / 1000000.0f;
 	vel = ft_rotate(data->player.vel, data->player.look_dir);
-	fpos.x = data->player.pos.x + 2 * vel.x * dt \
+	fpos.x = data->player.pos.x + 2 * vel.x * dt
 		* (1 + 1 * (data->player.shift_key == '1'));
-	fpos.y = data->player.pos.y + 2 * vel.y * dt \
+	fpos.y = data->player.pos.y + 2 * vel.y * dt
 		* (1 + 1 * (data->player.shift_key == '1'));
 	if (data->map[(int)floor(fpos.x)][(int)floor(fpos.y)] != '1')
 	{

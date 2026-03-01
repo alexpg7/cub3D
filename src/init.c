@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:56:09 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/01 14:39:02 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 			&mlx->line_length, &mlx->endian);
 	if (!(mlx->addr) || !(mlx->bits_per_pixel) || !(mlx->line_length))
 		ft_exit(data, ft_perror("mlx get adress failed", 1));
-	mlx_hook(mlx->win, 6, 1L<<6, &ft_movemouse, data);
+	mlx_hook(mlx->win, 6, 1L << 6, &ft_movemouse, data);
 	mlx_hook(mlx->win, 17, 0L, &ft_hookexit, data);
-	mlx_hook(mlx->win, 2, 1L<<0, &key_press, data);
-	mlx_hook(mlx->win, 3, 1L<<1, &key_release, data);
+	mlx_hook(mlx->win, 2, 1L << 0, &key_press, data);
+	mlx_hook(mlx->win, 3, 1L << 1, &key_release, data);
 	mlx_loop_hook(mlx->mlx, game_loop, data);
 	mlx_loop(mlx->mlx);
 }
+
 void	ft_inittex(t_texture *tex)
 {
 	tex->path = NULL;
