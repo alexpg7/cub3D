@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:18:19 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:34:00 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/04 15:16:08 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ int	ft_isspace_n(char c)
 	{
 		return (1);
 	}
+	return (0);
+}
+
+int	ft_classify(char *str)
+{
+	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]))
+		return (1);
+	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]))
+		return (2);
+	if (ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]))
+		return (3);
+	if (ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]))
+		return (4);
+	if (ft_strncmp(str, "F", 1) == 0 && ft_isspace(str[1]))
+		return (5);
+	if (ft_strncmp(str, "C", 1) == 0 && ft_isspace(str[1]))
+		return (6);
 	return (0);
 }
 

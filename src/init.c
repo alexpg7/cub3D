@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/04 14:49:44 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/04 15:01:21 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int	ft_init(t_data *data)
 	data->player.shift_key = '0';
 	data->player.ctrl_key = '0';
 	data->mlx.mlx = NULL;
+	ft_bzero(data->tex_rec, 6);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:04:36 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 13:47:54 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/04 15:16:01 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,35 @@ int	ft_checktexture(t_data *data, char *str, int type)
 	return (0);
 }
 
+int	ft_tex_rec(char *list)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (list[i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_checktext(char *str, t_data *data, int type, char *content)
+{
+	if (!ft_readline(str, data, type, content))
+		return (0);
+	if (data->tex_rec[type - 1] == '1')
+		return (ft_perror("Repeated instruction", 0));
+	data->tex_rec[type - 1] = '1';
+	return (1);
+}
+
 int	ft_gettextures(t_list *file, t_data *data)
 {
 	char	*str;
-	int		count;
 
-	count = 0;
-	while (file && count < 6)
+	while (file && !ft_tex_rec(data->tex_rec))
 	{
 		if (!file->content)
 			break ;
@@ -58,13 +80,11 @@ int	ft_gettextures(t_list *file, t_data *data)
 			file = file->next;
 			continue ;
 		}
-		if (!ft_readline(str, data, ft_classify(str), file->content))
+		if (!ft_checktext(str, data, ft_classify(str), file->content))
 			return (0);
-		else
-			count++;
 		file = file->next;
 	}
-	if (count != 6)
+	if (!ft_tex_rec(data->tex_rec))
 		return (ft_perror("Missing textures/colors information", 0));
 	return (1);
 }
@@ -83,21 +103,4 @@ void	ft_assigntype(int type, char *str, t_textures *tex)
 		tex->floor = ft_parse_rgb(str);
 	else if (type == 6)
 		tex->ceiling = ft_parse_rgb(str);
-}
-
-int	ft_classify(char *str)
-{
-	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]))
-		return (1);
-	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]))
-		return (2);
-	if (ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]))
-		return (3);
-	if (ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]))
-		return (4);
-	if (ft_strncmp(str, "F", 1) == 0 && ft_isspace(str[1]))
-		return (5);
-	if (ft_strncmp(str, "C", 1) == 0 && ft_isspace(str[1]))
-		return (6);
-	return (0);
 }

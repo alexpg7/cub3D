@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 15:40:14 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/04 15:16:17 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_data
 	t_mlx			mlx;
 	t_player		player;
 	t_textures		textures;
+	char			tex_rec[6];
 	struct timeval	last_time;
 	char			**map;
 }	t_data;
@@ -142,6 +143,7 @@ int				ft_perror(char *str, int ret);
 int				ft_xpmextension(char *filename);
 char			*ft_filename(char *str);
 int				ft_isspace_n(char c);
+int				ft_classify(char *str);
 
 // ft_exit.c
 int				ft_exit(t_data *data, int ret);
