@@ -6,7 +6,7 @@
 /*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 18:23:06 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/04 14:43:20 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/04 14:49:44 by alexp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_init_window(t_mlx *mlx, t_data *data)
 {
 	mlx->mlx = mlx_init();
 	mlx->win = NULL;
+	mlx->img = NULL;
 	if (!(mlx->mlx))
 		ft_exit(data, ft_perror("mlx init failed", 1));
 	if (!ft_loadtextures(data))
