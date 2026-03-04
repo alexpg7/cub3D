@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+         #
+#    By: alexp <alexp@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
-#    Updated: 2026/03/01 15:39:46 by alpascua         ###   ########.fr        #
+#    Updated: 2026/03/04 14:40:15 by alexp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NC				= \e[0m
 NAME			= cub3D
 
 FLAGS			= -Wall -Wextra -Werror -lmlx \
-				  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd
+				  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd -O2
 CFLAGS			= -Wall -Wextra -Werror -Ilib/minilibx-linux
 LDFLAGS			= -Llib/minilibx-linux
 LDLIBS			= -lmlx -lXext -lX11 -lm -lz -lbsd
@@ -103,7 +103,7 @@ fclean: clean
 re: fclean all
 
 # #### TEST TARGETS ####
-san:
+san: $(LIBFT) $(MINILIBX) $(OBJ)
 	@$(CC) $(OBJ) $(SAN) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled (sanitize) ${BYEL}$(NAME)${NC}"
 
