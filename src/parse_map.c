@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:46:31 by sarodrig          #+#    #+#             */
-/*   Updated: 2026/03/01 15:38:10 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/07 12:04:40 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	ft_validate_map_chars_and_players(t_data *data)
 			if (!ft_strchr("01NSEW ", data->map[i][j]))
 				return (ft_perror("Invalid map character", 0));
 			if (ft_strchr("NSEW", data->map[i][j]))
+			{
 				ft_setdata(data, &player_count, i, j);
+				data->map[i][j] = '0';
+			}
 			j++;
 		}
 		i++;
@@ -123,8 +126,6 @@ int	ft_checkmap(int fd, t_data *data)
 {
 	t_list	*file;
 	t_list	*map_start;
-	int		rows;
-	int		cols;
 
 	if (!ft_parsefile(&file, fd))
 		return (0);
@@ -133,13 +134,13 @@ int	ft_checkmap(int fd, t_data *data)
 		ft_lstclear(&file, &free);
 		return (0);
 	}
-	map_start = ft_locate_and_size_map(file, &rows, &cols);
-	if (!map_start || rows == 0)
+	map_start = ft_locate_and_size_map(file, &data->rows, &data->cols);
+	if (!map_start || data->rows == 0)
 	{
 		ft_lstclear(&file, &free);
 		return (ft_perror("Map missing", 0));
 	}
-	data->map = ft_alloc_map(map_start, rows, cols);
+	data->map = ft_alloc_map(map_start, data->rows, data->cols);
 	if (!data->map)
 	{
 		ft_lstclear(&file, &free);

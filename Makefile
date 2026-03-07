@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexp <alexp@student.42.fr>                +#+  +:+       +#+         #
+#    By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/22 17:41:17 by sarodrig          #+#    #+#              #
-#    Updated: 2026/03/04 14:40:15 by alexp            ###   ########.fr        #
+#    Updated: 2026/03/07 12:23:47 by alpascua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,11 @@ NC				= \e[0m
 # #### VARIABLES ####
 NAME			= cub3D
 
-FLAGS			= -Wall -Wextra -Werror -lmlx \
-				  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd -O2
-CFLAGS			= -Wall -Wextra -Werror -Ilib/minilibx-linux
-LDFLAGS			= -Llib/minilibx-linux
-LDLIBS			= -lmlx -lXext -lX11 -lm -lz -lbsd
-OPTIONS			= -MMD -c -I. -Iinc/
-SAN				= $(FLAGS) -fsanitize=address
+OBJ_FLAGS		= -Wall -Wextra -Werror -Ilib/minilibx-linux -MMD -c -I. -Iinc/
+CFLAGS			= -Wall -Wextra -Werror -Llib/minilibx-linux -lmlx -lXext -lX11 -lm -lz -lbsd
+SAN				= -Wall -Wextra -Werror -lmlx \
+				  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd -O2 \
+				  -fsanitize=address
 
 # Dirs
 SRC_DIR			= src/
@@ -74,13 +72,13 @@ $(MINILIBX):
 # Compile object files and generate .d files for dependencies
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC) Makefile
 	@mkdir -p $(OBJ_DIR)
-	@cc $(CFLAGS) $(OPTIONS) $< -o $@
+	@cc $(OBJ_FLAGS) $< -o $@
 
 # Include the generated dependency files
 -include $(DEP)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
-	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(LIBFT) $(MINILIBX) -o $(NAME)
 	@echo "😃 ${BGREEN}Compiled ${BYEL}$(NAME)${NC}"
 
 # #### PHONY TARGETS ####
@@ -98,14 +96,14 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(MINILIBX_DIR) clean
 	@/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)san
 	@echo "🗑️  $(BRED)Removed $(BYEL)$(NAME)${NC}"
 
 re: fclean all
 
-# #### TEST TARGETS ####
-san: $(LIBFT) $(MINILIBX) $(OBJ)
-	@$(CC) $(OBJ) $(SAN) $(LDFLAGS) $(LDLIBS) $(LIBFT) $(MINILIBX) -o $(NAME)
-	@echo "😃 ${BGREEN}Compiled (sanitize) ${BYEL}$(NAME)${NC}"
+$(NAME)san: $(LIBFT) $(MINILIBX) $(OBJ)
+	@$(CC) $(OBJ) $(SAN) $(CFLAGS) $(LIBFT) $(MINILIBX) -o $(NAME)san
+	@echo "😃 ${BGREEN}Compiled (sanitize) ${BYEL}$(NAME)san${NC}"
 
-test: san
-	@./$(NAME) map/map.cub
+# #### TEST TARGETS ####
+san: $(NAME)san

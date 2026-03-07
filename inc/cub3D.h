@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexp <alexp@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:06:26 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/04 15:16:17 by alexp            ###   ########.fr       */
+/*   Updated: 2026/03/07 12:02:36 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_data
 	char			tex_rec[6];
 	struct timeval	last_time;
 	char			**map;
+	int				rows;
+	int				cols;
 }	t_data;
 
 // cub3d.c functions

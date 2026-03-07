@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:22:29 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 14:41:47 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/07 11:45:53 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_texture	ft_raycast(t_ray *ray, char **map, t_data *data)
 	char		hit;
 
 	hit = map[(int)floor(ray->pos.x)][(int)floor(ray->pos.y)];
-	while (hit != '1')
+	while (hit != '1' && hit != ' ')
 	{
 		hit = ft_nearestwall(ray, map);
 	}

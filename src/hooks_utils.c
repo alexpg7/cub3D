@@ -6,7 +6,7 @@
 /*   By: alpascua <alpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:50:35 by alpascua          #+#    #+#             */
-/*   Updated: 2026/03/01 14:38:22 by alpascua         ###   ########.fr       */
+/*   Updated: 2026/03/07 12:08:33 by alpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	game_loop(t_data *data)
 		* (1 + 1 * (data->player.shift_key == '1'));
 	fpos.y = data->player.pos.y + 2 * vel.y * dt
 		* (1 + 1 * (data->player.shift_key == '1'));
-	if (data->map[(int)floor(fpos.x)][(int)floor(fpos.y)] != '1')
+	if (data->map[(int)floor(fpos.x)][(int)floor(fpos.y)] == '0')
 	{
 		data->player.pos.x = fpos.x;
 		data->player.pos.y = fpos.y;
