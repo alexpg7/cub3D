@@ -1,4 +1,4 @@
-# 🟥 cub3D ![Static Badge](https://img.shields.io/badge/Original-blue?style=for-the-badge)
+# 🟥 cub3D ![Static Badge](https://img.shields.io/badge/Barcelona-black?style=for-the-badge&logo=42&logoColor=%23FFFFFF)
 ![Static Badge](https://img.shields.io/badge/c-grey?style=flat&logo=c)
 ![Static Badge](https://img.shields.io/badge/Makefile-green?style=flat&logo=AnkerMake)
 ![Static Badge](https://img.shields.io/badge/status-completed-green?style=flat)
@@ -56,7 +56,7 @@ The program displays the image in a window and obeys the following rules:
 
 The window should look like this:
 
-<img src="https://https://github.com/alexpg7/Images/blob/main/cub3D/cub3D.png" width="500">
+<img src="https://github.com/alexpg7/Images/blob/main/cub3D/cub3D.png" width="700">
 
 We proportioned some textures in ./textures, but you can use whatever you want.
 
