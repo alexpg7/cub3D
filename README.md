@@ -1,14 +1,28 @@
-*This project has been created as part of the 42 curriculum by alpascua, sarodrig*
+# 🟥 cub3D ![Static Badge](https://img.shields.io/badge/Original-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/c-grey?style=flat&logo=c)
+![Static Badge](https://img.shields.io/badge/Makefile-green?style=flat&logo=AnkerMake)
+![Static Badge](https://img.shields.io/badge/status-completed-green?style=flat)
+
+*This project has been created as part of the 42 curriculum by [alpascua](https://github.com/alexpg7), [sarodrig](https://github.com/rodriguezparera)*
 
 # Description
 
-We must create a “realistic” 3D graphical representation of the inside of a maze from a first-person perspective.
+This project is about creating a 3D representation of a map, imitating the [Wolfenstain 3D](https://es.wikipedia.org/wiki/Wolfenstein_3D) graphic engine.
 
-We have to create this representation using the ray-casting principles.
+To do that, we have created the representation using the ray-casting principles.
 
-# Instructions
 
-The program must be compiled using ``make``. After that, the file ``cub3D`` should be created.
+# ⚒️ Compilation
+
+Copy this repository in your machine:
+
+```bash
+https://github.com/alexpg7/cub3D.git cub3D
+```
+
+To compile the program, just use the ``make`` command, the file ``cub3D`` should be created.
+
+# 🎮 How to use it
 
 To execute the program, you must include a map file (``.cub``) as the first (and only) parameter.
 
@@ -32,7 +46,7 @@ C  100, 100, 100
 111111011111110111
 ```
 
-The program displays the image in a window and respects the following rules:
+The program displays the image in a window and obeys the following rules:
 
 - The left and right arrow keys of the keyboard must allow you to look left and right in the maze.
 - The W, A, S, and D keys must allow you to move the point of view through the maze.
@@ -40,13 +54,37 @@ The program displays the image in a window and respects the following rules:
 - Pressing ESC must close the window and quit the program cleanly.
 - Clicking on the cross on the window’s frame must close the window and quit the program cleanly.
 
-# Resources
+The window should look like this:
 
-https://lodev.org/cgtutor/raycasting.html
+<img src="https://https://github.com/alexpg7/Images/blob/main/cub3D/cub3D.png" width="500">
 
-# Bonus Feature List
+We proportioned some textures in ./textures, but you can use whatever you want.
 
-The following bonus features have been included:
+# 🛝 Play around
 
-- Camera can be moved with the mouse
-- Wall collisions
+Now, you can use this program to create your own maps. You can even try to solve a maze from the inside by using a ``.cub`` file like this one:
+
+```output
+111111111111111
+1S1010001000001
+101010101110111
+101000101010001
+101111101010101
+100010100000101
+101010101110111
+101010101010001
+111010101011101
+100000001000101
+101111111110101
+100000001000001
+101010101110111
+101010100010001
+111111111111101
+100000000000001
+100000000000001
+100000000000001
+100000000000001
+100000000000001
+100000000000001
+111111111111111
+```
