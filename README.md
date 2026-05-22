@@ -17,7 +17,7 @@ To do that, we have created the representation using the ray-casting principles.
 Copy this repository in your machine:
 
 ```bash
-https://github.com/alexpg7/cub3D.git cub3D
+git clone https://github.com/alexpg7/cub3D.git cub3D
 ```
 
 To compile the program, just use the ``make`` command, the file ``cub3D`` should be created.
