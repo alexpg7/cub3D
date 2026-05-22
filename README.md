@@ -7,7 +7,7 @@
 
 # Description
 
-This project is about creating a 3D representation of a map, imitating the [Wolfenstain 3D](https://es.wikipedia.org/wiki/Wolfenstein_3D) graphic engine.
+This project is about creating a 3D representation of a map, imitating the [Wolfenstein 3D](https://es.wikipedia.org/wiki/Wolfenstein_3D) graphic engine.
 
 To do that, we have created the representation using the ray-casting principles.
 
